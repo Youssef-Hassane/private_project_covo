@@ -1,4 +1,3 @@
-"use client";
 import { NavbarButton } from "./navbar-button";
 import { NavbarItems } from "@/types";
 import Link from "next/link";
@@ -27,7 +26,7 @@ export function NavbarDes(props: NavbarProps) {
 			<div className="h-[100px] flex justify-between items-center mx-[50px]">
 
 				{/* logo */}
-				<Image src="/assets/images/COVO_LOGOGRAM_BLACK.png" alt="logo" className=' opacity-[0.8]' width={200} height={100} priority/>
+				<Image src="/images/COVO_LOGOGRAM_BLACK.png" alt="logo" className=' opacity-[0.8]' width={200} height={100} priority/>
 
 				{/* links of the pages */}
 				<div className="flex flex-row gap-1 ">
