@@ -1,11 +1,11 @@
+"use client";
 import { NavbarButton } from "./navbar-button";
 import { NavbarItems } from "@/types";
 import Link from "next/link";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import Image from "next/image";
-import { Button } from "../ui/button";
-import { Avatar } from "../ui/avatar";
-import { Avatar as AvatarI } from "../ui/avatarImage";
+import { Button } from "@/components/ui/button";
+import { Avatar } from "@/components/ui/avatar";
 import { LogOut, UserCog, UserRoundPlus } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React from 'react';
@@ -27,7 +27,7 @@ export function NavbarDes(props: NavbarProps) {
 			<div className="h-[100px] flex justify-between items-center mx-[50px]">
 
 				{/* logo */}
-				<Image src="/COVO_LOGOGRAM_BLACK.png" alt="logo" className=' opacity-[0.8]' width={200} height={100} priority/>
+				<Image src="/assets/images/COVO_LOGOGRAM_BLACK.png" alt="logo" className=' opacity-[0.8]' width={200} height={100} priority/>
 
 				{/* links of the pages */}
 				<div className="flex flex-row gap-1 ">

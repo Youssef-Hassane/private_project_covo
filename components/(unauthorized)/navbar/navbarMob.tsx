@@ -1,11 +1,11 @@
 'use client';
 
 import { NavbarItems } from '@/types';
-import {Sheet} from '../ui/sheet';
+import {Sheet} from '@/components/ui/sheet';
 import Link from 'next/link';
 import { NavbarButtonSheet as NavbarButton } from './navbar-button';
 import { usePathname } from 'next/navigation';
-import { Separator } from '../ui/separator';
+import { Separator } from '@/components/ui/separator';
 
 
 interface NavbarMobileProps {

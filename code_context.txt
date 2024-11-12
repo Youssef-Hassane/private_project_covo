@@ -1,0 +1,668 @@
+// File: components/(unauthorized)/navbar/navbar-button.tsx
+import { LucideIcon } from 'lucide-react';
+import { Button, ButtonProps } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { SheetClose } from '@/components/ui/sheet';
+
+interface NavbarButtonProps extends ButtonProps {
+  icon?: LucideIcon;
+}
+
+export function NavbarButton({
+  icon: Icon,
+  className,
+  children,
+  ...props
+}: NavbarButtonProps) {
+  return (
+    <Button
+      variant='ghost'
+      className={cn('gap-4 text-lg justify-start text-custom-dark-gray hover:text-custom-light-apricot', className)}
+      {...props}
+    >
+      {Icon && <Icon size={20} />}
+      <span>{children}</span>
+    </Button>
+  );
+}
+
+export function NavbarButtonSheet(props: NavbarButtonProps) {
+  return (
+    <SheetClose asChild>
+      <NavbarButton {...props} />
+    </SheetClose>
+  );
+}
+// File: components/(unauthorized)/navbar/navbar.tsx
+'use client'
+
+import { Info, Search, Home, List, Hotel } from 'lucide-react';
+import { NavbarDes } from './navbarDes';
+import { NavbarItems } from '@/types';
+import { useMediaQuery } from 'usehooks-ts';
+import { NavbarMob } from './navbarMob';
+
+const navbarItems: NavbarItems = {
+	links: [
+		{ label: 'Home', href: '/', icon: Home },
+		{ label: 'Benefits', href: '/explore', icon: Search },
+		{ label: 'Features', href: '/hotels', icon: Hotel },
+		{ label: 'Early Access', href: '/rooms', icon: Hotel },
+		{ label: 'About', href: '/about', icon: Info },
+		{ label: 'Contact', href: '/contact', icon: List, },
+		{ label: 'FAQ', href: '/rooms', icon: Hotel },
+	],
+}
+const navbarItemsMobile: NavbarItems = {
+	links: [
+		{ href: '/home', icon: Home },
+		{ href: '/explore', icon: Search },
+		{ href: '/hotels', icon: Hotel },
+		{ href: '/rooms', icon: Hotel },
+		{ href: '/about', icon: Info, },
+		{ href: '/contact', icon: List },
+	]
+}
+
+export function Navbar() {
+
+	const isDesktop = useMediaQuery('(min-width: 900px)', { initializeWithValue: false });
+
+	if (isDesktop) {
+		return (
+			<div className='h-[100px]'>
+				<NavbarDes navbarItems={navbarItems} />
+			</div>
+		);
+	}
+
+	return (
+		<NavbarMob navbarItems={navbarItemsMobile} />
+	);
+
+}
+
+// File: components/(unauthorized)/navbar/navbarDes.tsx
+"use client";
+import { NavbarButton } from "./navbar-button";
+import { NavbarItems } from "@/types";
+import Link from "next/link";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Avatar } from "@/components/ui/avatar";
+import { LogOut, UserCog, UserRoundPlus } from "lucide-react";
+import { usePathname } from "next/navigation";
+import React from 'react';
+
+
+interface NavbarProps {
+	navbarItems: NavbarItems;
+}
+
+export function NavbarDes(props: NavbarProps) {
+
+
+	const pathname = usePathname();
+
+
+	return (
+		/* navbar */
+		<aside className="bg-custom-Sage-Green w-full fixed z-50 ">
+			<div className="h-[100px] flex justify-between items-center mx-[50px]">
+
+				{/* logo */}
+				<Image src="/assets/images/COVO_LOGOGRAM_BLACK.png" alt="logo" className=' opacity-[0.8]' width={200} height={100} priority/>
+
+				{/* links of the pages */}
+				<div className="flex flex-row gap-1 ">
+					{props.navbarItems.links.map((link, index) => (
+						<Link key={index} href={link.href}>
+							<NavbarButton variant={"none"} className={`w-full ${pathname === link.href ? 'text-custom-dark-gray' : ''}`} icon={link.icon}>
+								{link.label}
+							</NavbarButton>
+						</Link>
+					))}
+				</div>
+
+
+				{/* user profile */}
+				<div className=' px-3 bg-custom-dark'>
+
+					<Popover >
+						<PopoverTrigger asChild>
+							<Button variant='none' className='group w-full justify-start '>
+								<div className='flex justify-between items-center '>
+									<div className='flex gap-2'>
+										<Avatar className='h-10 w-10'>
+											<UserCog className="group-hover:text-custom-light-apricot text-white" size={30} />
+										</Avatar>
+										{/* <span>{'Youssef Hassane'}</span> */}
+									</div>
+								</div>
+							</Button>
+						</PopoverTrigger>
+
+
+						<PopoverContent className='mb-2 w-56 p-3 rounded-sm mr-[80px] '>
+							<div className='space-y-1 text-white'>
+								<Link href="/login">
+									<NavbarButton
+										size='sm'
+										className='group w-full hover:bg-custom-dark-gray'
+
+									>
+										<div className='flex justify-between '>
+											<LogOut className="group-hover:text-custom-light-apricot text-white mt-[5px]" size={20} />
+											<p className={`text-white group-hover:text-custom-light-apricot pl-2`}>Log In</p>
+										</div>
+									</NavbarButton>
+								</Link>
+								<Link href="/signup">
+									<NavbarButton
+										size='sm'
+										className='group w-full hover:bg-custom-dark-gray'
+									>
+										<div className='flex justify-between '>
+											<UserRoundPlus className="group-hover:text-custom-light-apricot text-white mt-[5px]" size={20} />
+											<p className={`text-white group-hover:text-custom-light-apricot pl-2`}>Sign Up</p>
+										</div>
+									</NavbarButton>
+								</Link>
+							</div>
+						</PopoverContent>
+					</Popover>
+				</div>
+			</div>
+
+		</aside>
+	)
+}
+
+
+// File: components/(unauthorized)/navbar/navbarMob.tsx
+'use client';
+
+import { NavbarItems } from '@/types';
+import {Sheet} from '@/components/ui/sheet';
+import Link from 'next/link';
+import { NavbarButtonSheet as NavbarButton } from './navbar-button';
+import { usePathname } from 'next/navigation';
+import { Separator } from '@/components/ui/separator';
+
+
+interface NavbarMobileProps {
+  navbarItems: NavbarItems;
+}
+
+export function NavbarMob(props: NavbarMobileProps) {
+  const pathname = usePathname();
+
+  return (
+    <Sheet >
+
+      <div className='fixed -bottom-[18px] bg-custom-dark-gray w-full h-[100px] z-50 '>
+      <Separator />
+
+        <div className='flex justify-between items-center py-2 px-1 mx-5'>
+          {props.navbarItems.links.map((link, idx) => (
+            <Link key={idx} href={link.href}>
+              <NavbarButton
+                variant={pathname === link.href ? 'secondary' : 'ghost'}
+                icon={link.icon}
+                className={`${pathname === link.href ? 'text-custom-dark-gray bg-custom-light-apricot' : ''} h-[50px] hover:bg-custom-light-apricot hover:text-custom-dark-gray flex flex-col rounded-[100%] justify-center items-center gap-0`}
+              >
+
+              </NavbarButton>
+            </Link>
+          ))}
+
+        </div>
+      </div>
+    </Sheet>
+  );
+};
+// File: components/ui/avatar.tsx
+"use client"
+
+import * as React from "react"
+import * as AvatarPrimitive from "@radix-ui/react-avatar"
+
+import { cn } from "@/lib/utils"
+
+const Avatar = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Root
+    ref={ref}
+    className={cn(
+      "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
+      className
+    )}
+    {...props}
+  />
+))
+Avatar.displayName = AvatarPrimitive.Root.displayName
+
+const AvatarImage = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Image
+    ref={ref}
+    className={cn("aspect-square h-full w-full", className)}
+    {...props}
+  />
+))
+AvatarImage.displayName = AvatarPrimitive.Image.displayName
+
+const AvatarFallback = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Fallback>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Fallback
+    ref={ref}
+    className={cn(
+      "flex h-full w-full items-center justify-center rounded-full bg-muted",
+      className
+    )}
+    {...props}
+  />
+))
+AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
+
+export { Avatar, AvatarImage, AvatarFallback }
+
+// File: components/ui/button.tsx
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-8",
+        icon: "h-9 w-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button"
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+Button.displayName = "Button"
+
+export { Button, buttonVariants }
+
+// File: components/ui/popover.tsx
+"use client"
+
+import * as React from "react"
+import * as PopoverPrimitive from "@radix-ui/react-popover"
+
+import { cn } from "@/lib/utils"
+
+const Popover = PopoverPrimitive.Root
+
+const PopoverTrigger = PopoverPrimitive.Trigger
+
+const PopoverAnchor = PopoverPrimitive.Anchor
+
+const PopoverContent = React.forwardRef<
+  React.ElementRef<typeof PopoverPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
+>(({ className, align = "center", sideOffset = 4, ...props }, ref) => (
+  <PopoverPrimitive.Portal>
+    <PopoverPrimitive.Content
+      ref={ref}
+      align={align}
+      sideOffset={sideOffset}
+      className={cn(
+        "z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        className
+      )}
+      {...props}
+    />
+  </PopoverPrimitive.Portal>
+))
+PopoverContent.displayName = PopoverPrimitive.Content.displayName
+
+export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor }
+
+// File: components/ui/separator.tsx
+"use client"
+
+import * as React from "react"
+import * as SeparatorPrimitive from "@radix-ui/react-separator"
+
+import { cn } from "@/lib/utils"
+
+const Separator = React.forwardRef<
+  React.ElementRef<typeof SeparatorPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
+>(
+  (
+    { className, orientation = "horizontal", decorative = true, ...props },
+    ref
+  ) => (
+    <SeparatorPrimitive.Root
+      ref={ref}
+      decorative={decorative}
+      orientation={orientation}
+      className={cn(
+        "shrink-0 bg-border",
+        orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
+        className
+      )}
+      {...props}
+    />
+  )
+)
+Separator.displayName = SeparatorPrimitive.Root.displayName
+
+export { Separator }
+
+// File: components/ui/sheet.tsx
+"use client"
+
+import * as React from "react"
+import * as SheetPrimitive from "@radix-ui/react-dialog"
+import { cva, type VariantProps } from "class-variance-authority"
+import { X } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+const Sheet = SheetPrimitive.Root
+
+const SheetTrigger = SheetPrimitive.Trigger
+
+const SheetClose = SheetPrimitive.Close
+
+const SheetPortal = SheetPrimitive.Portal
+
+const SheetOverlay = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Overlay
+    className={cn(
+      "fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    )}
+    {...props}
+    ref={ref}
+  />
+))
+SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
+
+const sheetVariants = cva(
+  "fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500 data-[state=open]:animate-in data-[state=closed]:animate-out",
+  {
+    variants: {
+      side: {
+        top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+        bottom:
+          "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+        left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+        right:
+          "inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+      },
+    },
+    defaultVariants: {
+      side: "right",
+    },
+  }
+)
+
+interface SheetContentProps
+  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
+    VariantProps<typeof sheetVariants> {}
+
+const SheetContent = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Content>,
+  SheetContentProps
+>(({ side = "right", className, children, ...props }, ref) => (
+  <SheetPortal>
+    <SheetOverlay />
+    <SheetPrimitive.Content
+      ref={ref}
+      className={cn(sheetVariants({ side }), className)}
+      {...props}
+    >
+      <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+        <X className="h-4 w-4" />
+        <span className="sr-only">Close</span>
+      </SheetPrimitive.Close>
+      {children}
+    </SheetPrimitive.Content>
+  </SheetPortal>
+))
+SheetContent.displayName = SheetPrimitive.Content.displayName
+
+const SheetHeader = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col space-y-2 text-center sm:text-left",
+      className
+    )}
+    {...props}
+  />
+)
+SheetHeader.displayName = "SheetHeader"
+
+const SheetFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+      className
+    )}
+    {...props}
+  />
+)
+SheetFooter.displayName = "SheetFooter"
+
+const SheetTitle = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Title
+    ref={ref}
+    className={cn("text-lg font-semibold text-foreground", className)}
+    {...props}
+  />
+))
+SheetTitle.displayName = SheetPrimitive.Title.displayName
+
+const SheetDescription = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Description
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+SheetDescription.displayName = SheetPrimitive.Description.displayName
+
+export {
+  Sheet,
+  SheetPortal,
+  SheetOverlay,
+  SheetTrigger,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
+}
+
+// File: app/globals.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 24 9.8% 10%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 20 14.3% 4.1%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 60 9.1% 97.8%;
+    --primary-foreground: 24 9.8% 10%;
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 24 5.7% 82.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+// File: app/layout.tsx
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+import "./globals.css";
+import { Navbar } from "@/components/(unauthorized)/navbar/navbar";
+
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+});
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+});
+
+export const metadata: Metadata = {
+  title: "Create Next App",
+  description: "Generated by create next app",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Navbar />
+        {children}
+      </body>
+    </html>
+  );
+}
+
+// File: app/page.tsx
+
+export default function Home() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <h1>Home</h1>
+    </main>
+  );
+}
+
