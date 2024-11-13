@@ -34,8 +34,7 @@ export function NavbarButtonSheet(props: NavbarButtonProps) {
   );
 }
 // File: components/(unauthorized)/navbar/navbar.tsx
-'use client'
-
+"use client";
 import { Info, Search, Home, List, Hotel } from 'lucide-react';
 import { NavbarDes } from './navbarDes';
 import { NavbarItems } from '@/types';
@@ -66,31 +65,27 @@ const navbarItemsMobile: NavbarItems = {
 
 export function Navbar() {
 
-	const isDesktop = useMediaQuery('(min-width: 900px)', { initializeWithValue: false });
 
-	if (isDesktop) {
 		return (
 			<div className='h-[100px]'>
 				<NavbarDes navbarItems={navbarItems} />
 			</div>
 		);
-	}
+	
 
-	return (
-		<NavbarMob navbarItems={navbarItemsMobile} />
-	);
+	// return (
+	// 	<NavbarMob navbarItems={navbarItemsMobile} />
+	// );
 
 }
 
 // File: components/(unauthorized)/navbar/navbarDes.tsx
-"use client";
 import { NavbarButton } from "./navbar-button";
 import { NavbarItems } from "@/types";
 import Link from "next/link";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Avatar } from "@/components/ui/avatar";
 import { LogOut, UserCog, UserRoundPlus } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React from 'react';
@@ -112,7 +107,7 @@ export function NavbarDes(props: NavbarProps) {
 			<div className="h-[100px] flex justify-between items-center mx-[50px]">
 
 				{/* logo */}
-				<Image src="/assets/images/COVO_LOGOGRAM_BLACK.png" alt="logo" className=' opacity-[0.8]' width={200} height={100} priority/>
+				<Image src="/images/COVO_LOGOGRAM_BLACK.png" alt="logo" className=' opacity-[0.8]' width={200} height={100} priority />
 
 				{/* links of the pages */}
 				<div className="flex flex-row gap-1 ">
@@ -131,15 +126,8 @@ export function NavbarDes(props: NavbarProps) {
 
 					<Popover >
 						<PopoverTrigger asChild>
-							<Button variant='none' className='group w-full justify-start '>
-								<div className='flex justify-between items-center '>
-									<div className='flex gap-2'>
-										<Avatar className='h-10 w-10'>
-											<UserCog className="group-hover:text-custom-light-apricot text-white" size={30} />
-										</Avatar>
-										{/* <span>{'Youssef Hassane'}</span> */}
-									</div>
-								</div>
+							<Button variant='none' className='h-[50px] w-[50px] bg-blue-500 flex justify-center items-center'>
+								<UserCog className="w-12 h-12"/>
 							</Button>
 						</PopoverTrigger>
 

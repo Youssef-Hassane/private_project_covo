@@ -1,5 +1,4 @@
-'use client'
-
+"use client";
 import { Info, Search, Home, List, Hotel } from 'lucide-react';
 import { NavbarDes } from './navbarDes';
 import { NavbarItems } from '@/types';
@@ -30,18 +29,16 @@ const navbarItemsMobile: NavbarItems = {
 
 export function Navbar() {
 
-	const isDesktop = useMediaQuery('(min-width: 900px)', { initializeWithValue: false });
 
-	if (isDesktop) {
 		return (
 			<div className='h-[100px]'>
 				<NavbarDes navbarItems={navbarItems} />
 			</div>
 		);
-	}
+	
 
-	return (
-		<NavbarMob navbarItems={navbarItemsMobile} />
-	);
+	// return (
+	// 	<NavbarMob navbarItems={navbarItemsMobile} />
+	// );
 
 }

@@ -1,0 +1,307 @@
+├── app
+│   ├── api
+│   │   └── auth
+│   │       └── [...nextauth]
+│   │           └── route.ts
+│   ├── (authorized)
+│   │   ├── accounts
+│   │   │   ├── [id]
+│   │   │   │   └── page.tsx
+│   │   │   ├── pending
+│   │   │   │   └── page.tsx
+│   │   │   └── rejected
+│   │   │       └── page.tsx
+│   │   ├── add-company
+│   │   │   └── page.tsx
+│   │   ├── add-sub-user
+│   │   │   └── [id]
+│   │   │       ├── page.model.ts
+│   │   │       └── page.tsx
+│   │   ├── add-user
+│   │   │   └── page.tsx
+│   │   ├── companies
+│   │   │   ├── [id]
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   ├── contact-us
+│   │   │   ├── [id]
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   ├── edit-company
+│   │   │   └── [id]
+│   │   │       └── page.tsx
+│   │   ├── edit-user
+│   │   │   ├── admin
+│   │   │   │   └── [id]
+│   │   │   │       └── page.tsx
+│   │   │   └── sub-user
+│   │   │       └── [id]
+│   │   │           └── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── users
+│   │       └── page.tsx
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── loading.tsx
+│   ├── test-1
+│   │   ├── page.tsx
+│   │   └── test.txt
+│   └── (unauthorized)
+│       ├── layout.tsx
+│       ├── login
+│       │   └── page.tsx
+│       ├── otp-verification
+│       │   └── [type]
+│       │       └── page.tsx
+│       └── reset-password
+│           └── page.tsx
+├── assets
+│   └── images
+│       ├── banner.jpg
+│       ├── flightBgHero.svg
+│       ├── flightPNG.png
+│       ├── logo.png
+│       └── missionSVG.svg
+├── components
+│   ├── add-company
+│   │   ├── AddCompany.component.tsx
+│   │   └── add-company-form
+│   │       └── AddCompanyForm.tsx
+│   ├── add-sub-user
+│   │   ├── AddSubUser.component.tsx
+│   │   └── add-sub-user-form
+│   │       └── AddSubUserForm.component.tsx
+│   ├── add-user
+│   │   ├── AddUser.component.tsx
+│   │   └── add-user-form
+│   │       └── AddUserForm.component.tsx
+│   ├── companies
+│   │   ├── Companies.component.tsx
+│   │   └── company-details
+│   │       ├── admin-details
+│   │       │   ├── AdminDetails.component.tsx
+│   │       │   └── AdminDetails.model.ts
+│   │       ├── CompanyDetails.component.tsx
+│   │       └── sub-users-details
+│   │           ├── SubUserDetails.model.ts
+│   │           └── SubUsersDetails.tsx
+│   ├── contact-us
+│   │   ├── contact-message-details
+│   │   │   └── ContactMessageDetails.component.tsx
+│   │   └── ContactUs.component.tsx
+│   ├── dashboard
+│   │   ├── companies-section
+│   │   │   └── CompaniesSection.component.tsx
+│   │   ├── contact-us-section
+│   │   │   └── ContactUsSection.component.tsx
+│   │   ├── Dashboard.page.tsx
+│   │   ├── users-section
+│   │   │   └── UsersSection.component.tsx
+│   │   └── wrapper
+│   │       ├── Wrapper.component.tsx
+│   │       └── Wrapper.model.ts
+│   ├── edit-admin
+│   │   └── EditAdmin.component.tsx
+│   ├── edit-company
+│   │   ├── EditCompany.component.tsx
+│   │   └── edit-company-form
+│   │       └── EditCompanyForm.component.tsx
+│   ├── edit-sub-user
+│   │   └── EditSubUser.component.tsx
+│   ├── forget-password-modal
+│   │   └── ForgetPasswordModal.component.tsx
+│   ├── header
+│   │   └── Header.component.tsx
+│   ├── loading-spinner
+│   │   ├── LoadingSpinner.component.tsx
+│   │   └── style.css
+│   ├── login
+│   │   ├── Login.component.tsx
+│   │   └── login-form
+│   │       └── LoginForm.component.tsx
+│   ├── otp
+│   │   ├── Otp.component.tsx
+│   │   └── otp-form
+│   │       └── OtpForm.component.tsx
+│   ├── preaccounts
+│   │   ├── branch-dropdown
+│   │   │   ├── BranchDropdown.component.tsx
+│   │   │   └── BranchDropdown.model.ts
+│   │   ├── pending-action-button
+│   │   │   ├── PendingActionButton.component.tsx
+│   │   │   └── PendingActionButton.model.ts
+│   │   ├── Preaccounts.component.tsx
+│   │   ├── preaccounts.model.ts
+│   │   ├── preaccounts-table
+│   │   │   ├── PreaccountsTable.component.tsx
+│   │   │   └── preaccountsTable.model.ts
+│   │   └── rejected-action-button
+│   │       ├── RejectedActionButton.component.tsx
+│   │       └── RejectedActionButton.model.ts
+│   ├── rejected-accounts
+│   │   └── RejectedAccounts.component.tsx
+│   ├── reset-password
+│   │   ├── ResetPassword.component.tsx
+│   │   └── reset-password-form
+│   │       └── ResetPasswordForm.component.tsx
+│   ├── shared
+│   │   ├── avatar
+│   │   │   ├── Avatar.component.tsx
+│   │   │   └── Avatar.model.ts
+│   │   ├── button
+│   │   │   ├── Button.component.tsx
+│   │   │   └── Button.model.tsx
+│   │   ├── country-select
+│   │   │   ├── CountrySelect.component.tsx
+│   │   │   └── CountrySelect.model.ts
+│   │   ├── data-table
+│   │   │   ├── DataTable.component.tsx
+│   │   │   └── DataTable.model.ts
+│   │   ├── details-card
+│   │   │   ├── DetailsCard.component.tsx
+│   │   │   └── DetailsCard.model.ts
+│   │   ├── dropdown-select
+│   │   │   ├── DropDownSelect.component.tsx
+│   │   │   ├── DropDownSelect.model.ts
+│   │   │   └── style.scss
+│   │   ├── edit-user-form
+│   │   │   └── EditUserForm.component.tsx
+│   │   ├── file-input
+│   │   │   ├── FileInput.component.tsx
+│   │   │   ├── FileInput.model.tsx
+│   │   │   └── style.css
+│   │   ├── input
+│   │   │   ├── Input.component.tsx
+│   │   │   └── Input.model.ts
+│   │   ├── loading-spinner
+│   │   │   ├── LoadingSpinner.component.tsx
+│   │   │   └── LoadingSpinner.model.ts
+│   │   ├── pagination
+│   │   │   ├── Pagination.component.tsx
+│   │   │   └── Pagination.model.tsx
+│   │   ├── password-input
+│   │   │   ├── PasswordInput.component.tsx
+│   │   │   └── PasswordInput.model.tsx
+│   │   ├── phone-input
+│   │   │   ├── PhoneInput.component.tsx
+│   │   │   ├── PhoneInput.model.ts
+│   │   │   ├── PhoneInput.model.tsx
+│   │   │   ├── style.css
+│   │   │   └── style.scss
+│   │   ├── recaptcha
+│   │   │   ├── Recaptcha.component.tsx
+│   │   │   └── Recaptcha.model.ts
+│   │   ├── searchbar
+│   │   │   ├── filter
+│   │   │   │   ├── Filter.component.tsx
+│   │   │   │   └── Filter.model.ts
+│   │   │   ├── Searchbar.component.tsx
+│   │   │   └── Searchbar.model.ts
+│   │   ├── section-header
+│   │   │   ├── SectionHeader.component.tsx
+│   │   │   └── SectionHeader.model.ts
+│   │   └── table-button
+│   │       ├── style.module.scss
+│   │       ├── TableButton.component.tsx
+│   │       └── TableButton.model.tsx
+│   ├── sidebar
+│   │   ├── Sidebar.component.tsx
+│   │   ├── sidebar-header
+│   │   │   └── SidebarHeader.component.tsx
+│   │   └── sidebar-link
+│   │       ├── SidebarLink.model.ts
+│   │       └── SidebarLink.tsx
+│   └── users
+│       └── Users.component.tsx
+├── hooks
+│   ├── companies
+│   │   ├── companies.model.tsx
+│   │   ├── useCreateCompany.hook.tsx
+│   │   ├── useEditCompany.hook.tsx
+│   │   ├── useGetCompanies.hook.tsx
+│   │   └── useGetCompany.hook.tsx
+│   ├── contact-us
+│   │   ├── contact-us.model.tsx
+│   │   └── useGetContactUs.hook.tsx
+│   ├── forget-password
+│   │   └── useForgetPassword.hook.tsx
+│   ├── login
+│   │   └── useLogin.hook.tsx
+│   ├── otp
+│   │   ├── otp.model.ts
+│   │   └── useOtp.hook.tsx
+│   ├── preaccounts
+│   │   ├── usePreaccounts.data.ts
+│   │   ├── usePreaccounts.hook.tsx
+│   │   └── usePreaccounts.model.ts
+│   ├── search
+│   │   ├── useSearch.hook.tsx
+│   │   └── useSearch.model.ts
+│   └── users
+│       ├── useEditUser.hook.tsx
+│       ├── useGetUsers.hook.tsx
+│       ├── users.model.ts
+│       └── useSubusers.hook.tsx
+├── lib
+│   ├── api
+│   │   ├── api.ts
+│   │   ├── company
+│   │   │   ├── company.route.ts
+│   │   │   └── company.scheme.ts
+│   │   ├── contact-us
+│   │   │   ├── contact-us.route.ts
+│   │   │   └── contact-us.scheme.ts
+│   │   ├── fetcher.ts
+│   │   ├── forget-password
+│   │   │   ├── forget-password.route.ts
+│   │   │   └── forget-password.scheme.ts
+│   │   ├── login
+│   │   │   ├── login.route.ts
+│   │   │   └── login.scheme.ts
+│   │   ├── preusers
+│   │   │   ├── preuser.route.ts
+│   │   │   └── preuser.scheme.ts
+│   │   └── users
+│   │       ├── users.route.ts
+│   │       └── users.scheme.ts
+│   └── store
+│       ├── forget-password
+│       │   ├── forget-password.model.ts
+│       │   └── forget-password.slice.ts
+│       ├── hooks.ts
+│       ├── login
+│       │   ├── login.model.ts
+│       │   └── login.slice.ts
+│       ├── mobileMenu
+│       │   ├── mobileMenu.model.ts
+│       │   └── mobileMenu.slice.ts
+│       ├── recaptcha
+│       │   ├── recaptcha.model.ts
+│       │   └── recaptcha.slice.ts
+│       ├── register
+│       │   ├── register.model.ts
+│       │   └── register.slice.ts
+│       ├── root.reducer.ts
+│       ├── sidebar
+│       │   ├── sidebar.model.ts
+│       │   └── sidebar.slice.ts
+│       └── store.ts
+├── provider
+│   ├── RootProvider.component.tsx
+│   ├── StoreProvider.tsx
+│   └── ToastProvider.tsx
+├── @types
+│   └── react-country-state-city.d.ts
+├── types
+│   └── components
+│       └── input
+│           └── input.types.ts
+└── utils
+    ├── formToObject.ts
+    ├── reCaptchaChecker.ts
+    ├── searchByGenerate.ts
+    └── validation.ts
+
+124 directories, 182 files

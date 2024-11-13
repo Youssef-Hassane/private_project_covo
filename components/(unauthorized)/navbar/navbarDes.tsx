@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Avatar } from "@/components/ui/avatar";
 import { LogOut, UserCog, UserRoundPlus } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React from 'react';
@@ -26,7 +25,7 @@ export function NavbarDes(props: NavbarProps) {
 			<div className="h-[100px] flex justify-between items-center mx-[50px]">
 
 				{/* logo */}
-				<Image src="/images/COVO_LOGOGRAM_BLACK.png" alt="logo" className=' opacity-[0.8]' width={200} height={100} priority/>
+				<Image src="/images/COVO_LOGOGRAM_BLACK.png" alt="logo" className=' opacity-[0.8]' width={200} height={100} priority />
 
 				{/* links of the pages */}
 				<div className="flex flex-row gap-1 ">
@@ -45,21 +44,14 @@ export function NavbarDes(props: NavbarProps) {
 
 					<Popover >
 						<PopoverTrigger asChild>
-							<Button variant='none' className='group w-full justify-start '>
-								<div className='flex justify-between items-center '>
-									<div className='flex gap-2'>
-										<Avatar className='h-10 w-10'>
-											<UserCog className="group-hover:text-custom-light-apricot text-white" size={30} />
-										</Avatar>
-										{/* <span>{'Youssef Hassane'}</span> */}
-									</div>
-								</div>
+							<Button variant='none' className='h-auto w-auto flex justify-center items-center'>
+								<UserCog size={15} />
 							</Button>
 						</PopoverTrigger>
 
 
 						<PopoverContent className='mb-2 w-56 p-3 rounded-sm mr-[80px] '>
-							<div className='space-y-1 text-white'>
+							<div className='space-y-1 text-black'>
 								<Link href="/login">
 									<NavbarButton
 										size='sm'
@@ -67,8 +59,8 @@ export function NavbarDes(props: NavbarProps) {
 
 									>
 										<div className='flex justify-between '>
-											<LogOut className="group-hover:text-custom-light-apricot text-white mt-[5px]" size={20} />
-											<p className={`text-white group-hover:text-custom-light-apricot pl-2`}>Log In</p>
+											<LogOut className="group-hover:text-custom-light-apricot text-black mt-[5px]" size={20} />
+											<p className={`text-black group-hover:text-custom-light-apricot pl-2`}>Log In</p>
 										</div>
 									</NavbarButton>
 								</Link>
@@ -78,8 +70,8 @@ export function NavbarDes(props: NavbarProps) {
 										className='group w-full hover:bg-custom-dark-gray'
 									>
 										<div className='flex justify-between '>
-											<UserRoundPlus className="group-hover:text-custom-light-apricot text-white mt-[5px]" size={20} />
-											<p className={`text-white group-hover:text-custom-light-apricot pl-2`}>Sign Up</p>
+											<UserRoundPlus className="group-hover:text-custom-light-apricot text-black mt-[5px]" size={20} />
+											<p className={`text-black group-hover:text-custom-light-apricot pl-2`}>Sign Up</p>
 										</div>
 									</NavbarButton>
 								</Link>
