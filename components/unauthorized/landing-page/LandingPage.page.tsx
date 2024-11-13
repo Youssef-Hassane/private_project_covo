@@ -6,7 +6,7 @@ import FifthSection from './landing-page-sections/FifthSection.component';
 
 
 
-export default function LandingPage() {
+export default function LandingPagePage() {
   return (
     <div>
       <FirstSection />
