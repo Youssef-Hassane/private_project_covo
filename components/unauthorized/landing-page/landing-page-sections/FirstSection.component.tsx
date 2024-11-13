@@ -1,10 +1,14 @@
+import Image from "next/image";
 
 
 export default function FirstSection() {
   return (
-    <div>
-      <h1>Section 1</h1>
-      <p>Section 1 content</p>
+    <div className='bg-[url("/svg/BG.svg")] bg-no-repeat bg-cover w-full h-[700px] flex '>
+        <div className="w-1/2 h-full bg-blue-200"></div>
+        <div className="w-1/2 h-full bg-red-200">
+          <Image src="/images/Rectangle.png" width={500} height={500} alt="Rectangle" />
+        
+        </div>
     </div>
   )
 }

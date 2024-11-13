@@ -21,8 +21,8 @@ export function NavbarDes(props: NavbarProps) {
 
 	return (
 		/* navbar */
-		<aside className="bg-custom-Sage-Green w-full fixed z-50 ">
-			<div className="h-[100px] flex justify-between items-center mx-[50px]">
+		<aside className="w-full fixed z-50 ">
+			<div className="h-[100px] flex justify-between items-center mx-[70px]">
 
 				{/* logo */}
 				<Image src="/images/COVO_LOGOGRAM_BLACK.png" alt="logo" className=' opacity-[0.8]' width={200} height={100} priority />

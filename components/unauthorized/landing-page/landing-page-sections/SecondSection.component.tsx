@@ -12,8 +12,8 @@ export default function SecondSection() {
   ];
 
   return (
-    <div className="flex-row border-2 border-red-900">
-      <div className="margin-auto w-full items-center justify-around flex flex-row border-2">
+    <div className="flex-row border-2 border-red-900 ">
+      <div className="margin-auto w-full items-center justify-around flex flex-row border-2 h-[155px] px-6">
         {imageURLs.map((imageObject) => {
           return (
             <Image
@@ -22,7 +22,7 @@ export default function SecondSection() {
               alt={`someImage`}
               width={150}
               height={150}
-              className="w-50 h-auto filter grayscale "
+              className="w-[100px] h-auto filter grayscale py-3"
             />
           );
         })}
