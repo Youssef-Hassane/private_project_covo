@@ -52,22 +52,19 @@ export default function ThirdSection() {
         <article className="flex flex-col justify-center text-slate-700 text-5xl text-center uppercase w-4/5 basis-2/3">
           <h1> FIND YOUR PERFECT MATCH WITH <strong className={`${limelight.className}`}>COVO</strong> </h1>
         </article>
-        <article className="flex flex-col justify-center text-center uppercase w-4/5 basis-1/3">
-          <p>Connect with top brands and unlock exciting opportunities.</p>
+        <article className="flex flex-col justify-center text-center w-4/5 basis-1/3">
+          <p>Connect With Top Brands & Unlock Exciting Opportunities.</p>
         </article>
       </div>
 
-      <div className="flex flex-row justify-center px-[2em]">
+      <div className="flex flex-wrap gap-2 justify-center items-center">
         {AboutArray.map((about) => {
           return (
             <AboutBox
               key={about.id}
               title={about.title}
               text={about.text}
-              className={`basis-1/4 border-2
-                          h-[16em] flex
-                          flex-col justify-center
-                          rounded-md mx-[0.2em]
+              className={`bg-white w-[400px] h-[400px] rounded-lg border-custom-light-grayish-blue border-2 flex flex-col justify-center items-center p-4
                           bg-[url("/svg/BG.svg")]
                           ${roboto.className} px-[1.5em] py-[1em]`
                         }

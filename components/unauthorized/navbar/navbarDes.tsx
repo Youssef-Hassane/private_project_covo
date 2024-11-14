@@ -44,8 +44,8 @@ export function NavbarDes(props: NavbarProps) {
 
 					<Popover >
 						<PopoverTrigger asChild>
-							<Button variant='none' className='h-auto w-auto flex justify-center items-center'>
-								<UserCog size={15} />
+							<Button variant='none' className='h-auto w-auto flex justify-center items-center scale-[2]'>
+								<UserCog size={80}/>
 							</Button>
 						</PopoverTrigger>
 

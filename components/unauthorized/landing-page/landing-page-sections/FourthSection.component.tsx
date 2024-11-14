@@ -22,7 +22,7 @@ export default function FourthSection() {
         <p className="text-1xl font-[600] text-custom-dark-desaturated-blue text-center">Simplify your influencer marketing with our all-in-one platform, offering cost-effective solutions while streamlining your influencer marketing efforts and maximize ROI with our affordable platform.</p>
       </div>
       <br />
-      <div className="flex  gap-2 justify-center items-center">
+      <div className="flex flex-wrap gap-2 justify-center items-center">
         {cardInformation.map((cardObject) => (
           <div key={cardObject.id} className="bg-white w-[400px] h-[400px] rounded-lg border-custom-light-grayish-blue border-2 flex flex-col justify-center items-center p-4">
             <Image
