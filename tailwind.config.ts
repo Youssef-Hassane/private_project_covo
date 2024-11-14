@@ -22,6 +22,7 @@ const config: Config = {
 				'custom-light-grayish-blue': '#ebf1f9',
 				'custom-lark-blue': '#244779',
 				'custom-dark-desaturated-blue': '#30404d',
+				'custom-light-grayish-blue2': '#f8fbfe',
 				
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

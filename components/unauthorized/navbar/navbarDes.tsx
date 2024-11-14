@@ -21,7 +21,7 @@ export function NavbarDes(props: NavbarProps) {
 
 	return (
 		/* navbar */
-		<aside className="w-full fixed z-50 bg-custom-light-grayish-blue/20">
+		<aside className="w-full fixed z-50 bg-custom-light-grayish-blue2/70">
 			<div className="h-[100px] flex justify-between items-center mx-[70px]">
 
 				{/* logo */}
