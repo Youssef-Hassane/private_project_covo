@@ -67,8 +67,8 @@ export default function ThirdSection() {
               className={`basis-1/4 border-2
                           h-[16em] flex
                           flex-col justify-center
-rounded-md mx-[0.2em]
-bg-[url("/svg/BG.svg")]
+                          rounded-md mx-[0.2em]
+                          bg-[url("/svg/BG.svg")]
                           ${roboto.className} px-[1.5em] py-[1em]`
                         }
               // className={classNameAbout}
