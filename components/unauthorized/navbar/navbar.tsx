@@ -1,9 +1,9 @@
 "use client";
-import { Info, Search, Home, List, Hotel } from 'lucide-react';
-import { NavbarDes } from './navbarDes';
-import { NavbarItems } from '@/types';
-import { useMediaQuery } from 'usehooks-ts';
-import { NavbarMob } from './navbarMob';
+import { Info, Search, Home, List, Hotel } from "lucide-react";
+import { NavbarDes } from "./navbarDes";
+import { NavbarItems } from "@/types";
+import { useMediaQuery } from "usehooks-ts";
+import { NavbarMob } from "./navbarMob";
 
 // const navbarItems: NavbarItems = {
 // 	links: [
@@ -19,39 +19,35 @@ import { NavbarMob } from './navbarMob';
 
 const navbarItems: NavbarItems = {
 	links: [
-		{ label: 'Home', href: '/'},
-		{ label: 'Benefits', href: '/explore'},
-		{ label: 'Features', href: '/hotels'},
-		{ label: 'Early Access', href: '/rooms'},
-		{ label: 'About', href: '/about'},
-		{ label: 'Contact', href: '/contact'},
-		{ label: 'FAQ', href: '/rooms'},
+		{ label: "Home", href: "/" },
+		{ label: "Benefits", href: "/explore" },
+		{ label: "Features", href: "/hotels" },
+		{ label: "Early Access", href: "/rooms" },
+		{ label: "About", href: "/about" },
+		{ label: "Contact", href: "/contact" },
+		{ label: "FAQ", href: "/rooms" },
 	],
-}
+};
 
 const navbarItemsMobile: NavbarItems = {
 	links: [
-		{ href: '/home', icon: Home },
-		{ href: '/explore', icon: Search },
-		{ href: '/hotels', icon: Hotel },
-		{ href: '/rooms', icon: Hotel },
-		{ href: '/about', icon: Info, },
-		{ href: '/contact', icon: List },
-	]
-}
+		{ href: "/home", icon: Home },
+		{ href: "/explore", icon: Search },
+		{ href: "/hotels", icon: Hotel },
+		{ href: "/rooms", icon: Hotel },
+		{ href: "/about", icon: Info },
+		{ href: "/contact", icon: List },
+	],
+};
 
 export function Navbar() {
-
-
-		return (
-			<div className='h-[100px]'>
-				<NavbarDes navbarItems={navbarItems} />
-			</div>
-		);
-	
+	return (
+		<div className="h-[100px]">
+			<NavbarDes navbarItems={navbarItems} />
+			<NavbarMob navbarItems={navbarItemsMobile} />
+		</div>
+	);
 
 	// return (
-	// 	<NavbarMob navbarItems={navbarItemsMobile} />
 	// );
-
 }
