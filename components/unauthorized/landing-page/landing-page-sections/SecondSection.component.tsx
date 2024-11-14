@@ -12,21 +12,35 @@ export default function SecondSection() {
   ];
 
   return (
-    <div className="flex-row border-2 border-red-900 ">
-      <div className="margin-auto w-full items-center justify-around flex flex-row border-2 h-[155px] px-6">
-        {imageURLs.map((imageObject) => {
-          return (
+    <div className="relative w-full overflow-hidden bg-custom-light-grayish-blue/30">
+      <div className="flex animate-scroll">
+        {/* First set of images */}
+        <div className="flex min-w-full justify-around items-center py-8">
+          {imageURLs.map((imageObject) => (
             <Image
               key={imageObject.id}
               src={imageObject.url}
-              alt={`someImage`}
+              alt={`Brand logo ${imageObject.id}`}
               width={150}
               height={150}
-              className="w-[100px] h-auto filter grayscale py-3"
+              className="w-[100px] h-auto filter grayscale transition-opacity hover:grayscale-0"
             />
-          );
-        })}
+          ))}
+        </div>
+        {/* Duplicate set of images for seamless loop */}
+        <div className="flex min-w-full justify-around items-center py-8">
+          {imageURLs.map((imageObject) => (
+            <Image
+              key={`dup-${imageObject.id}`}
+              src={imageObject.url}
+              alt={`Brand logo ${imageObject.id}`}
+              width={150}
+              height={150}
+              className="w-[100px] h-auto filter grayscale transition-opacity hover:grayscale-0"
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
-}
+};

@@ -9,7 +9,20 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+			animation: {
+        scroll: 'scroll 20s linear infinite',
+      },
+      keyframes: {
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
   		colors: {
+				'custom-light-grayish-blue': '#ebf1f9',
+				'custom-lark-blue': '#244779',
+				'custom-dark-desaturated-blue': '#30404d',
+				
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
