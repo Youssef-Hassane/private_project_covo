@@ -12,7 +12,7 @@ export default function SecondSection() {
 	];
 
 	return (
-		<div className="relative w-full overflow-hidden bg-custom-light-grayish-blue2">
+		<div className="relative w-full overflow-hidden bg-custom-light-grayish-blue2 border-2 border-custom-light-grayish-blue">
 			<div className="flex animate-scroll">
 				{/* First set of images */}
 				<div className="flex min-w-full justify-around items-center py-8">

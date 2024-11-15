@@ -66,7 +66,7 @@ export default function FourthSection() {
 				{cardInformation.map((cardObject) => (
 					<div
 						key={cardObject.id}
-						className="bg-white w-[400px] h-[400px] rounded-lg border-custom-light-grayish-blue border-2 flex flex-col justify-center items-center p-4"
+						className="bg-white bg-[url('/svg/BG.svg')] w-[400px] h-[400px] rounded-lg border-custom-light-grayish-blue border-2 flex flex-col justify-center items-center p-4"
 					>
 						<Image
 							src={cardObject.url}

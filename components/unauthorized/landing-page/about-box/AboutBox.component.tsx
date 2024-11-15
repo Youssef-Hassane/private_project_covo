@@ -1,12 +1,15 @@
 import { IAboutBoxProps } from "./AboutBox.model";
+import Image from "next/image";
 
 export default function AboutBox(props: IAboutBoxProps) {
 	return (
 		<article className={props.className}>
-			<h1 className="text-3xl font-bold text-center basis-1/2">
+			<Image src={props.imageURL} width={120}  alt={props.title} />
+			<br />
+			<h1 className="text-2xl font-[600] text-custom-dark-desaturated-blue text-center">
 				{props.title}
 			</h1>
-			<p className="basis-1/2 px-[1em]">{props.text}</p>
+			<p className=" font-[300] text-custom-dark-desaturated-blue text-center">{props.text}</p>
 		</article>
 	);
 }
