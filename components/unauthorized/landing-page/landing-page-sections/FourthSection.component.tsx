@@ -68,6 +68,7 @@ export default function FourthSection() {
 						key={cardObject.id}
 						className="bg-white bg-[url('/svg/BG.svg')] w-[400px] h-[400px] rounded-lg border-custom-light-grayish-blue border-2 flex flex-col justify-center items-center p-4"
 					>
+						<div className="flex justify-center items-center h-[100px]">
 						<Image
 							src={cardObject.url}
 							alt={`Brand logo ${cardObject.id}`}
@@ -75,6 +76,7 @@ export default function FourthSection() {
 							height={200}
 							className="w-[100px] h-auto "
 						/>
+						</div>
 						<br />
 						<p className="text-2xl font-[600] text-custom-dark-desaturated-blue text-center">
 							{cardObject.text}

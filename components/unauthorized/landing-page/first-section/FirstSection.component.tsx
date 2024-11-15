@@ -6,9 +6,10 @@ import Rectangle from "@/assets/images/Rectangle.png";
 
 export default function FirstSection() {
 	return (
-		<div className='bg-[url("/svg/BG.svg")] bg-no-repeat bg-cover w-full h-[700px] flex'>
-			<div className="w-1/2 h-full flex justify-center items-center">
-				<div className="flex flex-col justify-center  h-1/2 w-[70%] text-custom-dark-desaturated-blue">
+		<div className='bg-[url("/svg/BG.svg")] bg-no-repeat bg-cover w-full md:h-[700px] flex flex-wrap pb-9'>
+			{/* Text Section */}
+			<div className="order-2 md:order-1 md:w-1/2 md:h-full h-1/2 flex justify-center items-center">
+				<div className="flex flex-col justify-center h-1/2 w-[70%] text-custom-dark-desaturated-blue">
 					<p className="text-4xl font-[900] subpixel-antialiased">
 						The easiest way to work with global brands and influencers
 					</p>
@@ -31,7 +32,9 @@ export default function FirstSection() {
 					</Button>
 				</div>
 			</div>
-			<div className="w-1/2 h-full  flex justify-center items-center">
+
+			{/* Image Section */}
+			<div className="order-1 md:order-2 md:w-1/2 md:h-full h-1/2 flex justify-center items-center">
 				<Image src={Rectangle} width={600} height={600} alt="Rectangle" />
 			</div>
 		</div>

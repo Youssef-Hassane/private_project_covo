@@ -3,7 +3,7 @@ import { AboutArray, limelight, roboto } from "./ThirdSection.data";
 
 export default function ThirdSection() {
 	return (
-		<section className="flex flex-col w-full h-full bg-custom-light-grayish-blue2 py-9 ">
+		<section className="flex flex-col w-full h-full bg-custom-light-grayish-blue2 py-9 px-4">
 			<div className="grid gap-2">
 				<p className="text-5xl text-center uppercase text-custom-dark-desaturated-blue">{" "}FIND YOUR PERFECT MATCH WITH {" "}<strong className={`${limelight.className}`}>COVO</strong>{" "}</p>
 				<p className="text-1xl font-[600] text-custom-dark-desaturated-blue text-center">Connect With Top Brands & Unlock Exciting Opportunities.</p>

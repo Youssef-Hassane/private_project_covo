@@ -1,215 +1,168 @@
-// File: components/(unauthorized)/navbar/navbar-button.tsx
-import { LucideIcon } from 'lucide-react';
-import { Button, ButtonProps } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { SheetClose } from '@/components/ui/sheet';
+// File: components/authorized/test.txt
 
-interface NavbarButtonProps extends ButtonProps {
-  icon?: LucideIcon;
+// File: components/shared/Calendar.component.tsx
+"use client"
+
+import * as React from "react"
+
+import { Calendar } from "@/components/ui/calendar"
+
+export default function CalendarDemo() {
+  const [date, setDate] = React.useState<Date | undefined>(new Date())
+
+  return (
+    <Calendar
+      mode="range"
+      selected={date}
+      onSelect={setDate}
+      className="rounded-md border bg-white shadow-sm"
+    />
+  )
 }
 
-export function NavbarButton({
-  icon: Icon,
-  className,
-  children,
-  ...props
-}: NavbarButtonProps) {
-  return (
-    <Button
-      variant='ghost'
-      className={cn('gap-4 text-lg justify-start text-custom-dark-gray hover:text-custom-light-apricot', className)}
+// File: components/ui/alert-dialog.tsx
+"use client"
+
+import * as React from "react"
+import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog"
+
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
+
+const AlertDialog = AlertDialogPrimitive.Root
+
+const AlertDialogTrigger = AlertDialogPrimitive.Trigger
+
+const AlertDialogPortal = AlertDialogPrimitive.Portal
+
+const AlertDialogOverlay = React.forwardRef<
+  React.ElementRef<typeof AlertDialogPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Overlay>
+>(({ className, ...props }, ref) => (
+  <AlertDialogPrimitive.Overlay
+    className={cn(
+      "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    )}
+    {...props}
+    ref={ref}
+  />
+))
+AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName
+
+const AlertDialogContent = React.forwardRef<
+  React.ElementRef<typeof AlertDialogPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Content>
+>(({ className, ...props }, ref) => (
+  <AlertDialogPortal>
+    <AlertDialogOverlay />
+    <AlertDialogPrimitive.Content
+      ref={ref}
+      className={cn(
+        "fixed left-[50%] top-[50%] z-50 grid w-full  translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
+        className
+      )}
       {...props}
-    >
-      {Icon && <Icon size={20} />}
-      <span>{children}</span>
-    </Button>
-  );
+    />
+  </AlertDialogPortal>
+))
+AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName
+
+const AlertDialogHeader = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col space-y-2 text-center sm:text-left",
+      className
+    )}
+    {...props}
+  />
+)
+AlertDialogHeader.displayName = "AlertDialogHeader"
+
+const AlertDialogFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+      className
+    )}
+    {...props}
+  />
+)
+AlertDialogFooter.displayName = "AlertDialogFooter"
+
+const AlertDialogTitle = React.forwardRef<
+  React.ElementRef<typeof AlertDialogPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Title>
+>(({ className, ...props }, ref) => (
+  <AlertDialogPrimitive.Title
+    ref={ref}
+    className={cn("text-lg font-semibold", className)}
+    {...props}
+  />
+))
+AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName
+
+const AlertDialogDescription = React.forwardRef<
+  React.ElementRef<typeof AlertDialogPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Description>
+>(({ className, ...props }, ref) => (
+  <AlertDialogPrimitive.Description
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+AlertDialogDescription.displayName =
+  AlertDialogPrimitive.Description.displayName
+
+const AlertDialogAction = React.forwardRef<
+  React.ElementRef<typeof AlertDialogPrimitive.Action>,
+  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action>
+>(({ className, ...props }, ref) => (
+  <AlertDialogPrimitive.Action
+    ref={ref}
+    className={cn(buttonVariants(), className)}
+    {...props}
+  />
+))
+AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName
+
+const AlertDialogCancel = React.forwardRef<
+  React.ElementRef<typeof AlertDialogPrimitive.Cancel>,
+  React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Cancel>
+>(({ className, ...props }, ref) => (
+  <AlertDialogPrimitive.Cancel
+    ref={ref}
+    className={cn(
+      buttonVariants({ variant: "outline" }),
+      "mt-2 sm:mt-0",
+      className
+    )}
+    {...props}
+  />
+))
+AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName
+
+export {
+  AlertDialog,
+  AlertDialogPortal,
+  AlertDialogOverlay,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel,
 }
 
-export function NavbarButtonSheet(props: NavbarButtonProps) {
-  return (
-    <SheetClose asChild>
-      <NavbarButton {...props} />
-    </SheetClose>
-  );
-}
-// File: components/(unauthorized)/navbar/navbar.tsx
-"use client";
-import { Info, Search, Home, List, Hotel } from 'lucide-react';
-import { NavbarDes } from './navbarDes';
-import { NavbarItems } from '@/types';
-import { useMediaQuery } from 'usehooks-ts';
-import { NavbarMob } from './navbarMob';
-
-const navbarItems: NavbarItems = {
-	links: [
-		{ label: 'Home', href: '/', icon: Home },
-		{ label: 'Benefits', href: '/explore', icon: Search },
-		{ label: 'Features', href: '/hotels', icon: Hotel },
-		{ label: 'Early Access', href: '/rooms', icon: Hotel },
-		{ label: 'About', href: '/about', icon: Info },
-		{ label: 'Contact', href: '/contact', icon: List, },
-		{ label: 'FAQ', href: '/rooms', icon: Hotel },
-	],
-}
-const navbarItemsMobile: NavbarItems = {
-	links: [
-		{ href: '/home', icon: Home },
-		{ href: '/explore', icon: Search },
-		{ href: '/hotels', icon: Hotel },
-		{ href: '/rooms', icon: Hotel },
-		{ href: '/about', icon: Info, },
-		{ href: '/contact', icon: List },
-	]
-}
-
-export function Navbar() {
-
-
-		return (
-			<div className='h-[100px]'>
-				<NavbarDes navbarItems={navbarItems} />
-			</div>
-		);
-	
-
-	// return (
-	// 	<NavbarMob navbarItems={navbarItemsMobile} />
-	// );
-
-}
-
-// File: components/(unauthorized)/navbar/navbarDes.tsx
-import { NavbarButton } from "./navbar-button";
-import { NavbarItems } from "@/types";
-import Link from "next/link";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { LogOut, UserCog, UserRoundPlus } from "lucide-react";
-import { usePathname } from "next/navigation";
-import React from 'react';
-
-
-interface NavbarProps {
-	navbarItems: NavbarItems;
-}
-
-export function NavbarDes(props: NavbarProps) {
-
-
-	const pathname = usePathname();
-
-
-	return (
-		/* navbar */
-		<aside className="bg-custom-Sage-Green w-full fixed z-50 ">
-			<div className="h-[100px] flex justify-between items-center mx-[50px]">
-
-				{/* logo */}
-				<Image src="/images/COVO_LOGOGRAM_BLACK.png" alt="logo" className=' opacity-[0.8]' width={200} height={100} priority />
-
-				{/* links of the pages */}
-				<div className="flex flex-row gap-1 ">
-					{props.navbarItems.links.map((link, index) => (
-						<Link key={index} href={link.href}>
-							<NavbarButton variant={"none"} className={`w-full ${pathname === link.href ? 'text-custom-dark-gray' : ''}`} icon={link.icon}>
-								{link.label}
-							</NavbarButton>
-						</Link>
-					))}
-				</div>
-
-
-				{/* user profile */}
-				<div className=' px-3 bg-custom-dark'>
-
-					<Popover >
-						<PopoverTrigger asChild>
-							<Button variant='none' className='h-[50px] w-[50px] bg-blue-500 flex justify-center items-center'>
-								<UserCog className="w-12 h-12"/>
-							</Button>
-						</PopoverTrigger>
-
-
-						<PopoverContent className='mb-2 w-56 p-3 rounded-sm mr-[80px] '>
-							<div className='space-y-1 text-white'>
-								<Link href="/login">
-									<NavbarButton
-										size='sm'
-										className='group w-full hover:bg-custom-dark-gray'
-
-									>
-										<div className='flex justify-between '>
-											<LogOut className="group-hover:text-custom-light-apricot text-white mt-[5px]" size={20} />
-											<p className={`text-white group-hover:text-custom-light-apricot pl-2`}>Log In</p>
-										</div>
-									</NavbarButton>
-								</Link>
-								<Link href="/signup">
-									<NavbarButton
-										size='sm'
-										className='group w-full hover:bg-custom-dark-gray'
-									>
-										<div className='flex justify-between '>
-											<UserRoundPlus className="group-hover:text-custom-light-apricot text-white mt-[5px]" size={20} />
-											<p className={`text-white group-hover:text-custom-light-apricot pl-2`}>Sign Up</p>
-										</div>
-									</NavbarButton>
-								</Link>
-							</div>
-						</PopoverContent>
-					</Popover>
-				</div>
-			</div>
-
-		</aside>
-	)
-}
-
-
-// File: components/(unauthorized)/navbar/navbarMob.tsx
-'use client';
-
-import { NavbarItems } from '@/types';
-import {Sheet} from '@/components/ui/sheet';
-import Link from 'next/link';
-import { NavbarButtonSheet as NavbarButton } from './navbar-button';
-import { usePathname } from 'next/navigation';
-import { Separator } from '@/components/ui/separator';
-
-
-interface NavbarMobileProps {
-  navbarItems: NavbarItems;
-}
-
-export function NavbarMob(props: NavbarMobileProps) {
-  const pathname = usePathname();
-
-  return (
-    <Sheet >
-
-      <div className='fixed -bottom-[18px] bg-custom-dark-gray w-full h-[100px] z-50 '>
-      <Separator />
-
-        <div className='flex justify-between items-center py-2 px-1 mx-5'>
-          {props.navbarItems.links.map((link, idx) => (
-            <Link key={idx} href={link.href}>
-              <NavbarButton
-                variant={pathname === link.href ? 'secondary' : 'ghost'}
-                icon={link.icon}
-                className={`${pathname === link.href ? 'text-custom-dark-gray bg-custom-light-apricot' : ''} h-[50px] hover:bg-custom-light-apricot hover:text-custom-dark-gray flex flex-col rounded-[100%] justify-center items-center gap-0`}
-              >
-
-              </NavbarButton>
-            </Link>
-          ))}
-
-        </div>
-      </div>
-    </Sheet>
-  );
-};
 // File: components/ui/avatar.tsx
 "use client"
 
@@ -321,6 +274,82 @@ Button.displayName = "Button"
 
 export { Button, buttonVariants }
 
+// File: components/ui/calendar.tsx
+"use client"
+
+import * as React from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { DayPicker } from "react-day-picker"
+
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
+
+export type CalendarProps = React.ComponentProps<typeof DayPicker>
+
+function Calendar({
+  className,
+  classNames,
+  showOutsideDays = true,
+  ...props
+}: CalendarProps) {
+  return (
+    <div className="w-[180px] h-[200px] overflow-hidden">
+      <DayPicker
+        showOutsideDays={showOutsideDays}
+        className={cn("p-1", className)}
+        classNames={{
+          months: "flex flex-col sm:flex-row space-y-2 sm:space-x-2 sm:space-y-0",
+          month: "space-y-2",
+          caption: "flex justify-center pt-1 relative items-center",
+          caption_label: "text-xs font-medium",
+          nav: "space-x-1 flex items-center",
+          nav_button: cn(
+            buttonVariants({ variant: "outline" }),
+            "h-5 w-5 bg-transparent p-0 opacity-50 hover:opacity-100"
+          ),
+          nav_button_previous: "absolute left-1",
+          nav_button_next: "absolute right-1",
+          table: "w-full border-collapse space-y-1",
+          head_row: "flex",
+          head_cell:
+            "text-muted-foreground rounded-md w-6 font-normal text-[0.7rem]",
+          row: "flex w-full mt-1",
+          cell: cn(
+            "relative p-0 text-center text-xs focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected].day-range-end)]:rounded-r-md",
+            props.mode === "range"
+              ? "[&:has(>.day-range-end)]:rounded-r-md [&:has(>.day-range-start)]:rounded-l-md first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md"
+              : "[&:has([aria-selected])]:rounded-md"
+          ),
+          day: cn(
+            buttonVariants({ variant: "ghost" }),
+            "h-6 w-6 p-0 font-normal aria-selected:opacity-100"
+          ),
+          day_range_start: "day-range-start",
+          day_range_end: "day-range-end",
+          day_selected:
+            "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
+          day_today: "bg-accent text-accent-foreground",
+          day_outside:
+            "day-outside text-muted-foreground aria-selected:bg-accent/50 aria-selected:text-muted-foreground",
+          day_disabled: "text-muted-foreground opacity-50",
+          day_range_middle:
+            "aria-selected:bg-accent aria-selected:text-accent-foreground",
+          day_hidden: "invisible",
+          ...classNames,
+        }}
+        components={{
+          IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
+          IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        }}
+        {...props}
+      />
+    </div>
+  )
+}
+Calendar.displayName = "Calendar"
+
+export { Calendar }
+
 // File: components/ui/popover.tsx
 "use client"
 
@@ -355,6 +384,56 @@ const PopoverContent = React.forwardRef<
 PopoverContent.displayName = PopoverPrimitive.Content.displayName
 
 export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor }
+
+// File: components/ui/scroll-area.tsx
+"use client"
+
+import * as React from "react"
+import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
+
+import { cn } from "@/lib/utils"
+
+const ScrollArea = React.forwardRef<
+  React.ElementRef<typeof ScrollAreaPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
+>(({ className, children, ...props }, ref) => (
+  <ScrollAreaPrimitive.Root
+    ref={ref}
+    className={cn("relative overflow-hidden", className)}
+    {...props}
+  >
+    <ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
+      {children}
+    </ScrollAreaPrimitive.Viewport>
+    <ScrollBar />
+    <ScrollAreaPrimitive.Corner />
+  </ScrollAreaPrimitive.Root>
+))
+ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName
+
+const ScrollBar = React.forwardRef<
+  React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
+  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>
+>(({ className, orientation = "vertical", ...props }, ref) => (
+  <ScrollAreaPrimitive.ScrollAreaScrollbar
+    ref={ref}
+    orientation={orientation}
+    className={cn(
+      "flex touch-none select-none transition-colors",
+      orientation === "vertical" &&
+        "h-full w-2.5 border-l border-l-transparent p-[1px]",
+      orientation === "horizontal" &&
+        "h-2.5 flex-col border-t border-t-transparent p-[1px]",
+      className
+    )}
+    {...props}
+  >
+    <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-border" />
+  </ScrollAreaPrimitive.ScrollAreaScrollbar>
+))
+ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName
+
+export { ScrollArea, ScrollBar }
 
 // File: components/ui/separator.tsx
 "use client"
@@ -531,6 +610,1127 @@ export {
   SheetDescription,
 }
 
+// File: components/unauthorized/landing-page/LandingPage.page.tsx
+import FirstSection from "./first-section/FirstSection.component";
+import SecondSection from "./second-section/SecondSection.component";
+import ThirdSection from "./third-section/ThirdSection.component";
+import FourthSection from "./landing-page-sections/FourthSection.component";
+import FifthSection from "./landing-page-sections/FifthSection.component";
+import Price from "./price/Price.component";
+import Features from "./features/features.component";
+import Faq from "./faq/faq.component";
+
+export default function LandingPagePage() {
+	return (
+		<div>
+			<FirstSection />
+			<SecondSection />
+			<ThirdSection />
+			<FourthSection />
+			<Features />
+			<Faq />
+			<Price />
+
+			<FifthSection />
+		</div>
+	);
+}
+
+// File: components/unauthorized/landing-page/about-box/AboutBox.component.tsx
+import { IAboutBoxProps } from "./AboutBox.model";
+import Image from "next/image";
+
+export default function AboutBox(props: IAboutBoxProps) {
+	return (
+		<article className={props.className}>
+			<div className="h-[120px] flex justify-center items-center">
+			<Image src={props.imageURL} width={120}  alt={props.title} />
+			</div>
+			<br />
+			<h1 className="text-2xl font-[600] text-custom-dark-desaturated-blue text-center">
+				{props.title}
+			</h1>
+			<p className=" font-[300] text-custom-dark-desaturated-blue text-center">{props.text}</p>
+		</article>
+	);
+}
+
+// File: components/unauthorized/landing-page/about-box/AboutBox.model.ts
+export interface IAboutBoxProps {
+	imageURL: any;
+	title: string;
+	text: string;
+	className: string;
+}
+
+// File: components/unauthorized/landing-page/faq/faq-buttons/for-agencies/ForAgencies.button.tsx
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { ForAgenciesQuestions } from "./ForAgencies.data";
+
+
+
+
+export default function ForAgenciesButton() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger className="bg-white bg-[url('/svg/BG.svg')] hover:bg-gray-300/70 w-[400px] h-[100px] border-2 border-custom-light-grayish-blue rounded-md"><p className="text-4xl font-[700] text-custom-dark-desaturated-blue text-center">For Agencies</p></AlertDialogTrigger>
+      <AlertDialogContent className="w-[70%] border-none">
+        <AlertDialogTitle>
+          <div className="w-full text-center p-5">
+            <strong className="text-3xl text-center text-custom-lark-blue">For Agencies Questions</strong>
+          </div>
+        </AlertDialogTitle>
+        <AlertDialogHeader className="bg-white bg-[url('/svg/BG.svg')] h-auto">
+          <ScrollArea className="max-h-[550px]">
+            {ForAgenciesQuestions.map((question) => {
+              return (
+                <div key={question.id}>
+                  <strong className="text-custom-dark-desaturated-blue">{question.question}</strong>
+                  <p className="text-custom-dark-desaturated-blue">{question.answer}</p>
+                  <br />
+                </div>
+              );
+            })}
+          </ScrollArea>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogAction className="bg-custom-lark-blue w-[100px]">Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+// File: components/unauthorized/landing-page/faq/faq-buttons/for-agencies/ForAgencies.data.ts
+
+export const ForAgenciesQuestions = [
+  {
+    id: 1,
+    question: "1. HOW CAN MARKETING AGENCIES USE COVO?",
+    answer: "COVO offers marketing agencies the ability to manage influencer campaigns for their clients seamlessly. With access to a network of vetted influencers, streamlined campaign tools, and performance analytics, agencies can enhance their service offerings and create impactful campaigns."
+  },
+  {
+    id: 2,
+    question: "2. CAN COVO SUPPORT MULTIPLE CLIENTS UNDER ONE AGENCY ACCOUNT?",
+    answer: "Yes, agencies can manage multiple clients and campaigns from a single COVO account. Our platform allows for streamlined oversight, making it easy to organize and execute multiple campaigns."
+  },
+  {
+    id: 3,
+    question: "3. WHAT ARE THE BENEFITS OF USING COVO INSTEAD OF TRADITIONAL INFLUENCER MARKETING METHODS?",
+    answer: "COVO provides efficiency, scalability, and data-driven insights all in one platform. Compared to traditional methods, COVO’s AI simplifies influencer discovery, and its centralized tools reduce time spent on communication, reporting, and tracking."
+  }
+];
+
+// File: components/unauthorized/landing-page/faq/faq-buttons/for-brands/ForBrands.button.tsx
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { ForBrandsQuestions } from "./ForBrands.data";
+
+
+
+
+export default function ForBrandsButton() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger className="bg-white bg-[url('/svg/BG.svg')] hover:bg-gray-300/70 w-[400px] h-[100px] border-2 border-custom-light-grayish-blue rounded-md"><p className="text-4xl font-[700] text-custom-dark-desaturated-blue text-center">For Brands</p></AlertDialogTrigger>
+      <AlertDialogContent className="w-[70%] border-none">
+        <AlertDialogTitle>
+          <div className="w-full text-center p-5">
+            <strong className="text-3xl text-center text-custom-lark-blue">For Brands Questions</strong>
+          </div>
+        </AlertDialogTitle>
+        <AlertDialogHeader className="bg-white bg-[url('/svg/BG.svg')] h-auto">
+          <ScrollArea className="max-h-[550px]">
+            {ForBrandsQuestions.map((question) => {
+              return (
+                <div key={question.id}>
+                  <strong className="text-custom-dark-desaturated-blue">{question.question}</strong>
+                  <p className="text-custom-dark-desaturated-blue">{question.answer}</p>
+                  <br />
+                </div>
+              );
+            })}
+          </ScrollArea>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogAction className="bg-custom-lark-blue w-[100px]">Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+// File: components/unauthorized/landing-page/faq/faq-buttons/for-brands/ForBrands.data.ts
+export const ForBrandsQuestions = [
+  {
+    id: 1,
+    question: "1. HOW CAN COVO BENEFIT MY BRAND?",
+    answer: "COVO helps you discover vetted influencers who are perfect for your campaign goals, providing access to local creators in any market. With COVO, you save time, streamline communication, and gain insights into campaign performance—all in one place."
+  },
+  {
+    id: 2,
+    question: "2. HOW DOES COVO’S AI-POWERED MATCHING WORK?",
+    answer: "Our AI algorithm takes into account your campaign objectives, target audience, and brand values to recommend influencers who fit your specific needs. This way, you can focus on impactful connections without the time-consuming search."
+  },
+  {
+    id: 3,
+    question: "3. HOW MUCH DOES IT COST TO USE COVO AS A BRAND?",
+    answer: "COVO operates on a subscription model, starting at $150 per month. This covers access to our platform’s tools, analytics, and our network of vetted influencers. We also offer custom packages for larger campaigns."
+  },
+  {
+    id: 4,
+    question: "4. CAN COVO HANDLE INTERNATIONAL CAMPAIGNS?",
+    answer: "Yes, COVO is built to help brands connect with influencers from around the world. Our platform makes it easy to manage cross-border campaigns and discover local influencers who can bring authenticity to your global campaigns."
+  }
+];
+// File: components/unauthorized/landing-page/faq/faq-buttons/for-influencers/ForInfluencers.button.tsx
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { ForInfluencersQuestions } from "./ForInfluencers.data";
+
+
+
+
+export default function ForInfluencersButton() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger className="bg-white bg-[url('/svg/BG.svg')] hover:bg-gray-300/70 w-[400px] h-[100px] border-2 border-custom-light-grayish-blue rounded-md"><p className="text-4xl font-[700] text-custom-dark-desaturated-blue text-center">For Influencers</p></AlertDialogTrigger>
+      <AlertDialogContent className="w-[70%] border-none">
+        <AlertDialogTitle>
+          <div className="w-full text-center p-5">
+            <strong className="text-3xl text-center text-custom-lark-blue">For Influencers Questions</strong>
+          </div>
+        </AlertDialogTitle>
+        <AlertDialogHeader className="bg-white bg-[url('/svg/BG.svg')] h-auto">
+          <ScrollArea className="max-h-[550px]">
+            {ForInfluencersQuestions.map((question) => {
+              return (
+                <div key={question.id}>
+                  <strong className="text-custom-dark-desaturated-blue">{question.question}</strong>
+                  <p className="text-custom-dark-desaturated-blue">{question.answer}</p>
+                  <br />
+                </div>
+              );
+            })}
+          </ScrollArea>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogAction className="bg-custom-lark-blue w-[100px]">Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+// File: components/unauthorized/landing-page/faq/faq-buttons/for-influencers/ForInfluencers.data.ts
+export const ForInfluencersQuestions = [
+  {
+    id: 1,
+    question: "1. WHAT CAN I EXPECT AS AN INFLUENCER ON COVO?",
+    answer: "As a creator on COVO, you gain direct access to brands seeking partnerships in your region and market. You can apply for campaigns, communicate with brands, and manage all aspects of your partnerships in one place, with COVO supporting fair and secure payments."
+  },
+  {
+    id: 2,
+    question: "2. DO I NEED A MINIMUM FOLLOWER COUNT TO JOIN COVO?",
+    answer: "Yes, the minimum follower count is 1,000. However, we prioritize influencers with genuine engagement and a consistent brand identity. Our goal is to connect brands with creators who have authentic influence, regardless of follower size beyond this threshold."
+  },
+  {
+    id: 3,
+    question: "3. HOW DO I GET PAID FOR CAMPAIGNS?",
+    answer: "Payments are handled securely through COVO. Once campaign terms are agreed upon and milestones are met, payments are processed directly through the platform, ensuring timely and transparent transactions."
+  },
+  {
+    id: 4,
+    question: "4. CAN I CONNECT WITH MULTIPLE BRANDS ON COVO?",
+    answer: "Absolutely! COVO allows you to connect with multiple brands, providing a variety of opportunities that align with your style and audience. The more active you are, the greater the chance to secure campaigns."
+  }
+];
+// File: components/unauthorized/landing-page/faq/faq-buttons/general/General.button.tsx
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { GeneralQuestions } from "./General.data";
+
+
+
+
+export default function GeneralButton() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger className="bg-white bg-[url('/svg/BG.svg')] hover:bg-gray-300/70 w-[400px] h-[100px] border-2 border-custom-light-grayish-blue rounded-md"><p className="text-4xl font-[700] text-custom-dark-desaturated-blue text-center ">General</p></AlertDialogTrigger>
+      <AlertDialogContent className="w-[70%] border-none">
+        <AlertDialogTitle>
+          <div className="w-full text-center p-5">
+            <strong className="text-3xl text-center text-custom-lark-blue">General Questions</strong>
+          </div>
+        </AlertDialogTitle>
+        <AlertDialogHeader className="bg-white bg-[url('/svg/BG.svg')] h-auto">
+          <ScrollArea className="max-h-[550px]">
+          {GeneralQuestions.map((question) => {
+              return (
+                <div key={question.id}>
+                  <strong className="text-custom-dark-desaturated-blue">{question.question}</strong>
+                  <p className="text-custom-dark-desaturated-blue">{question.answer}</p>
+                  <br />
+                </div>
+              );
+            })}
+          </ScrollArea>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogAction className="bg-custom-lark-blue w-[100px]">Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+// File: components/unauthorized/landing-page/faq/faq-buttons/general/General.data.ts
+export const GeneralQuestions = [
+  {
+    id: 1,
+    question: "1. WHAT IS COVO?",
+    answer: "COVO is a platform that connects global brands with local influencers and creators. Our AI-driven system simplifies the process of discovering, managing, and measuring influencer campaigns, making partnerships more accessible, authentic, and impactful."
+  },
+  {
+    id: 2,
+    question: "2. HOW DOES COVO WORK?",
+    answer: "Brands and influencers create profiles on COVO. Brands can search for creators who align with their campaign goals, while influencers can connect with brands looking for authentic engagement. COVO manages everything from discovery and communication to payments and real-time analytics."
+  }
+];
+// File: components/unauthorized/landing-page/faq/faq-buttons/technical-support/TechnicalSupport.button.tsx
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { TechnicalSupportQuestions } from "./TechnicalSupport.data";
+
+
+export default function TechnicalSupportButton() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger className="bg-white bg-[url('/svg/BG.svg')] hover:bg-gray-300/70 w-[400px] h-[100px] border-2 border-custom-light-grayish-blue rounded-md"><p className="text-4xl font-[700] text-custom-dark-desaturated-blue text-center">Technical & Support</p></AlertDialogTrigger>
+      <AlertDialogContent className="w-[70%] border-none">
+        <AlertDialogTitle>
+          <div className="w-full text-center p-5">
+            <strong className="text-3xl text-center text-custom-lark-blue">Technical & Support Questions</strong>
+          </div>
+        </AlertDialogTitle>
+        <AlertDialogHeader className="bg-white bg-[url('/svg/BG.svg')] h-auto">
+          <ScrollArea className="max-h-[550px]">
+            {TechnicalSupportQuestions.map((question) => {
+              return (
+                <div key={question.id}>
+                  <strong className="text-custom-dark-desaturated-blue">{question.question}</strong>
+                  <p className="text-custom-dark-desaturated-blue">{question.answer}</p>
+                  <br />
+                </div>
+              );
+            })}
+          </ScrollArea>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogAction className="bg-custom-lark-blue w-[100px]">Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+// File: components/unauthorized/landing-page/faq/faq-buttons/technical-support/TechnicalSupport.data.ts
+export const TechnicalSupportQuestions = [
+  {
+    id: 1,
+    question: "1. IS THERE CUSTOMER SUPPORT AVAILABLE?",
+    answer: "Yes, we provide dedicated customer support for all users. Our support team is available via chat and email to assist with any questions or technical issues."
+  },
+  {
+    id: 2,
+    question: "2. IS COVO SECURE?",
+    answer: "COVO takes data security seriously. Our platform uses encrypted channels for all transactions, and we ensure that user data is handled in compliance with privacy standards."
+  },
+  {
+    id: 3,
+    question: "2. CAN I INTEGRATE COVO WITH MY EXISTING TOOLS?",
+    answer: "We’re working on expanding integrations to make it easy for brands, influencers, and agencies to incorporate COVO into their current workflows. Stay tuned for updates on integration features."
+  }
+];
+
+// File: components/unauthorized/landing-page/faq/faq.component.tsx
+import GeneralButton from "./faq-buttons/general/General.button";
+import ForBrandsButton from "./faq-buttons/for-brands/ForBrands.button";
+import ForAgenciesButton from "./faq-buttons/for-agencies/ForAgencies.button";
+import ForInfluencersButton from "./faq-buttons/for-influencers/ForInfluencers.button";
+import TechnicalSupportButton from "./faq-buttons/technical-support/TechnicalSupport.button";
+import { limelight } from "./faq.data";
+
+
+
+export default function Faq() {
+  return (
+    <section className="flex flex-col justify-center items-center w-full h-full bg-custom-light-grayish-blue2 py-9 px-4">
+			<div className="flex flex-col gap-2 justify-center items-center">
+				<p className="text-5xl text-center uppercase text-custom-dark-desaturated-blue">{" "}Frequently Asked Questions About{" "}<strong className={`${limelight.className}`}>COVO</strong>{" "}</p>
+				<p className="text-1xl font-[400] text-custom-dark-desaturated-blue text-center max-w-[800px]">COVO is a platform that connects brands with influencers. It simplifies influencer marketing by offering AI-powered matching, campaign management, and analytics. Brands can find suitable influencers, while influencers can connect with brands and manage campaigns efficiently. COVO provides features like secure payments, performance tracking, and support.</p>
+			</div>
+			<br />
+      <div className="flex flex-wrap gap-2 justify-center items-center max-w-[900px] h-auto">
+        <GeneralButton />
+        <ForBrandsButton />
+        <ForAgenciesButton />
+        <ForInfluencersButton />
+        <TechnicalSupportButton />
+      </div>
+		</section>
+  );
+}
+// File: components/unauthorized/landing-page/faq/faq.data.ts
+import { Limelight } from "next/font/google";
+
+export const limelight = Limelight({
+	subsets: ["latin"],
+	weight: ["400"],
+	style: ["normal"],
+	display: "swap",
+});
+
+// File: components/unauthorized/landing-page/features/features.component.tsx
+import Image from "next/image";
+import { cardInformation } from "./features.data";
+
+
+export default function Features() {
+  return (
+    <div className="bg-custom-light-grayish-blue2 pt-9">
+      <div className="grid gap-2">
+        <h1 className="text-5xl font-[700] text-custom-dark-desaturated-blue text-center">
+          Features
+        </h1>
+        <p className="text-3xl font-[600] text-custom-lark-blue text-center">
+          Find Your Perfect Influencer Match.
+
+        </p>
+        <p className="text-1xl font-[600] text-custom-dark-desaturated-blue text-center">
+          Seamlessly discover and collaborate with influencers who align with your brand&apos;s goals.
+        </p>
+      </div>
+      <br />
+      <div className="flex flex-wrap gap-2 justify-center items-center">
+        <div className="bg-white bg-[url('/svg/BG.svg')] w-[800px] h-auto rounded-lg border-custom-light-grayish-blue border-2 flex flex-wrap justify-center items-center p-4 m-4">
+          {cardInformation.map((cardObject) => (
+            <div key={cardObject.id}
+              className=" flex flex-wrap justify-center items-center p-4">
+              <div className=" ">
+                <Image
+                  src={cardObject.url}
+                  alt={`Brand logo ${cardObject.id}`}
+                  width={150}
+                  height={150}
+                  className="w-[120px] h-auto p-3"
+                />
+              </div>
+              <div className="max-w-[600px]">
+                <p className="text-2xl font-[600] text-custom-dark-desaturated-blue text-left">
+                  {cardObject.text}
+                </p>
+                <p className=" font-[300] text-custom-dark-desaturated-blue text-start">
+                  {cardObject.supText}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
+}
+// File: components/unauthorized/landing-page/features/features.data.ts
+import data_processing from "@/assets/svg/data_processing.svg";
+import server_cluster from "@/assets/svg/server_cluster.svg";
+
+export const cardInformation = [
+  {
+    url: server_cluster,
+    text: "Advanced Matching Algorithms",
+    supText:
+      "COVO's Advanced Matching Algorithms utilize machine learning and data analytics to intelligently connect brands with ideal influencers, ensuring highly effective collaborations.",
+    id: 1,
+  },
+  {
+    url: data_processing,
+    text: "Data-Driven Insights",
+    supText:
+      "COVO provides Data-Driven Insights through real-time analytics and visualization tools, empowering brands to track campaign performance, measure ROI, and make informed decisions to optimize their influencer marketing strategies.",
+    id: 2,
+  }
+];
+// File: components/unauthorized/landing-page/first-section/FirstSection.component.tsx
+"use client";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ReactTyped } from "react-typed";
+import Rectangle from "@/assets/images/Rectangle.png";
+
+export default function FirstSection() {
+	return (
+		<div className='bg-[url("/svg/BG.svg")] bg-no-repeat bg-cover w-full md:h-[700px] flex flex-wrap pb-9'>
+			{/* Text Section */}
+			<div className="order-2 md:order-1 md:w-1/2 md:h-full h-1/2 flex justify-center items-center">
+				<div className="flex flex-col justify-center h-1/2 w-[70%] text-custom-dark-desaturated-blue">
+					<p className="text-4xl font-[900] subpixel-antialiased">
+						The easiest way to work with global brands and influencers
+					</p>
+					<p className="text-2xl subpixel-antialiased font-[400]">
+						Join our growing community of{" "}
+						<ReactTyped
+							className="text-custom-lark-blue"
+							strings={["500+ creators", "250+ brands"]}
+							typeSpeed={50}
+							backSpeed={30}
+							backDelay={1500}
+							loop={true}
+							showCursor={true}
+							cursorChar="|"
+						/>
+					</p>
+
+					<Button className="w-[200px] h-[50px] mt-4 bg-custom-lark-blue hover:bg-custom-dark-desaturated-blue text-lg font-[500]">
+						Start 7 day free trial
+					</Button>
+				</div>
+			</div>
+
+			{/* Image Section */}
+			<div className="order-1 md:order-2 md:w-1/2 md:h-full h-1/2 flex justify-center items-center">
+				<Image src={Rectangle} width={600} height={600} alt="Rectangle" />
+			</div>
+		</div>
+	);
+}
+
+// File: components/unauthorized/landing-page/landing-page-sections/FifthSection.component.tsx
+export default function FifthSection() {
+	return (
+		<div>
+			<h1>Section 5</h1>
+			<p>Section 5 content</p>
+		</div>
+	);
+}
+
+// File: components/unauthorized/landing-page/landing-page-sections/FourthSection.component.tsx
+import Image from "next/image";
+
+export default function FourthSection() {
+	const cardInformation = [
+		{
+			url: "/svg/people_search.svg",
+			text: "Discover Influencers",
+			supText:
+				"Our platform offers a user-friendly interface for easily searching and filtering influencers based on various criteria, including niche, audience demographics, engagement rates and location.",
+			id: 1,
+		},
+		{
+			url: "/svg/building_blocks.svg",
+			text: "Build Your Campaign",
+			supText:
+				"Our platform provides a streamlined process for creating and customizing campaigns, allowing brands to define their objectives, target audience, budget, and desired deliverables.",
+			id: 2,
+		},
+		{
+			url: "/svg/software_engineer.svg",
+			text: "Cloud-Enabled",
+			supText:
+				"Our cloud-based platform ensures scalability, accommodating both small and large-scale campaigns without compromising performance.",
+			id: 3,
+		},
+		{
+			url: "/svg/co_workers.svg",
+			text: "Manage Ongoing Campaigns",
+			supText:
+				"Stay informed about the progress of your campaigns through real-time updates and notifications.",
+			id: 4,
+		},
+		{
+			url: "/svg/chat_bot.svg",
+			text: "AI-Driven Recommendations",
+			supText:
+				"Leveraging AI-powered algorithms, we provide precise matches between brands and influencers, ensuring optimal campaign alignment.",
+			id: 5,
+		},
+		{
+			url: "/svg/secure_login.svg",
+			text: "Encryption and Security",
+			supText:
+				"Rest assured that your data is safeguarded with robust encryption protocols, ensuring the confidentiality and integrity of your information.",
+			id: 6,
+		},
+	];
+
+	return (
+		<div className="bg-custom-light-grayish-blue2">
+			<div className="grid gap-2">
+				<h1 className="text-5xl font-[700] text-custom-dark-desaturated-blue text-center">
+					Benefits
+				</h1>
+				<p className="text-3xl font-[600] text-custom-lark-blue text-center">
+					One Platform — Cost-Effective Influencer Marketing
+				</p>
+				<p className="text-1xl font-[600] text-custom-dark-desaturated-blue text-center">
+					Simplify your influencer marketing with our all-in-one platform,
+					offering cost-effective solutions while streamlining your influencer
+					marketing efforts and maximize ROI with our affordable platform.
+				</p>
+			</div>
+			<br />
+			<div className="flex flex-wrap gap-2 justify-center items-center">
+				{cardInformation.map((cardObject) => (
+					<div
+						key={cardObject.id}
+						className="bg-white bg-[url('/svg/BG.svg')] w-[400px] h-[400px] rounded-lg border-custom-light-grayish-blue border-2 flex flex-col justify-center items-center p-4"
+					>
+						<div className="flex justify-center items-center h-[100px]">
+						<Image
+							src={cardObject.url}
+							alt={`Brand logo ${cardObject.id}`}
+							width={200}
+							height={200}
+							className="w-[100px] h-auto "
+						/>
+						</div>
+						<br />
+						<p className="text-2xl font-[600] text-custom-dark-desaturated-blue text-center">
+							{cardObject.text}
+						</p>
+						<p className=" font-[300] text-custom-dark-desaturated-blue text-center">
+							{cardObject.supText}
+						</p>
+					</div>
+				))}
+			</div>
+		</div>
+	);
+}
+
+// File: components/unauthorized/landing-page/price/Price.component.tsx
+import PriceCard from "./price-card/priceCard";
+
+
+export default function Price() {
+  return (
+    <div className="w-full h-full bg-custom-light-grayish-blue2 pt-9">
+      <div className="grid gap-2 ">
+        <h1 className="text-5xl font-[700] text-custom-dark-desaturated-blue text-center">
+          Plans & Pricing
+        </h1>
+        <p className="text-3xl font-[600] text-custom-lark-blue text-center">
+          Choose a Plan
+          That Works for You
+        </p>
+      </div>
+      <br />
+      <div className="w-full h-full flex flex-wrap justify-center items-center gap-10">
+        <PriceCard />
+      </div>
+    </div>
+  );
+}
+// File: components/unauthorized/landing-page/price/price-card/priceCard.data.tsx
+import advanced_customization from "@/assets/svg/advanced_customization.svg";
+import dev_focus from "@/assets/svg/dev_focus.svg";
+import projections from "@/assets/svg/projections.svg";
+
+
+
+export const priceInformation = [
+  {
+    id: 1,
+    imageURL: dev_focus,
+    plan: "Beginner",
+    price: 39,
+    currency: "R",
+    duration: "monthly",
+    description: "Explore the basics with this introductory course",
+    validity: "Valid for 3 months",
+    includes: [
+      "6 classes",
+      "3 individual sessions",
+      "Online resources"
+    ]
+  },
+  {
+    id: 2,
+    imageURL: advanced_customization,
+    plan: "Advanced",
+    price: 59,
+    currency: "R",
+    duration: "monthly",
+    description: "Perfect for creatives, freelancers, and experienced",
+    validity: "Valid for 12 months",
+    includes: [
+      "6 classes",
+      "3 individual sessions",
+      "Online resources",
+      "1 guest pass",
+      "Free WiFi",
+      "Weekly newsletter"
+    ]
+  },
+  {
+    id: 3,
+    imageURL: projections,
+    plan: "Pro",
+    price: 99,
+    currency: "R",
+    duration: "monthly",
+    description: "Unlimited access to professional content",
+    validity: "Valid for 12 months",
+    includes: [
+      "6 classes",
+      "3 individual sessions",
+      "Online resources",
+      "1 guest pass",
+      "Free WiFi",
+      "Weekly newsletter",
+      "Priority support"
+    ]
+  }
+];
+// File: components/unauthorized/landing-page/price/price-card/priceCard.tsx
+import React from 'react';
+import Image from "next/image";
+import { priceInformation } from "./priceCard.data";
+
+
+export default function PriceCard() {
+  return (
+    <div className="flex flex-wrap justify-center gap-4">
+      {priceInformation.map((plan) => (
+        <div
+          key={plan.id}
+          className="bg-white rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105 h-auto w-[350px] flex flex-col"
+        >
+          <div className="p-1 bg-custom-dark-desaturated-blue" />
+          <div className="p-8 flex-grow">
+            <div className='flex justify-center items-center w-full h-[180px]'>
+              <Image src={plan.imageURL} width={120} alt={plan.plan} />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">{plan.plan}</h2>
+            <p className="text-gray-600 mb-6">{plan.description}</p>
+            <p className="text-4xl font-bold text-gray-800 mb-6">
+              {plan.currency}{plan.price} <span className="text-base font-normal">/{plan.duration}</span>
+            </p>
+            <p className="text-gray-500 mb-4">{plan.validity}</p>
+            <ul className="text-sm text-gray-600 mb-6">
+              {plan.includes.map((feature, index) => (
+                <li key={index} className="mb-2 flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none" className="w-4 h-4 mr-2 text-green-500">
+                    <path d="M5 13l4 4L19 7" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="p-4">
+            <button className="w-full bg-custom-dark-desaturated-blue text-white rounded-full px-4 py-2 hover:bg-custom-dark-desaturated-blue/95 focus:outline-none focus:shadow-outline-green active:bg-green-800">
+              Select Plan
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// File: components/unauthorized/landing-page/second-section/SecondSection.component.tsx
+import Image from "next/image";
+
+export default function SecondSection() {
+	const imageURLs = [
+		{ url: "/images/pngwing_pepsi.png", id: 1 },
+		{ url: "/images/pngwingAdidas.png", id: 2 },
+		{ url: "/images/pngwingBarbie.png", id: 3 },
+		{ url: "/images/pngwingBurberry.png", id: 4 },
+		{ url: "/images/pngwingCalvinKlein.png", id: 5 },
+		{ url: "/images/pngwingPuma.png", id: 6 },
+		{ url: "/images/pngwingZara.png", id: 7 },
+	];
+
+	return (
+		<div className="relative w-full overflow-hidden bg-custom-light-grayish-blue2 border-2 border-custom-light-grayish-blue">
+			<div className="flex animate-scroll">
+				{/* First set of images */}
+				<div className="flex min-w-full justify-around items-center py-8">
+					{imageURLs.map((imageObject) => (
+						<Image
+							key={imageObject.id}
+							src={imageObject.url}
+							alt={`Brand logo ${imageObject.id}`}
+							width={150}
+							height={150}
+							className="w-[100px] h-auto filter grayscale transition-opacity hover:grayscale-0"
+						/>
+					))}
+				</div>
+				{/* Duplicate set of images for seamless loop */}
+				<div className="flex min-w-full justify-around items-center py-8">
+					{imageURLs.map((imageObject) => (
+						<Image
+							key={`dup-${imageObject.id}`}
+							src={imageObject.url}
+							alt={`Brand logo ${imageObject.id}`}
+							width={150}
+							height={150}
+							className="w-[100px] h-auto filter grayscale transition-opacity hover:grayscale-0"
+						/>
+					))}
+				</div>
+			</div>
+		</div>
+	);
+}
+
+// File: components/unauthorized/landing-page/third-section/ThirdSection.component.tsx
+import AboutBox from "../about-box/AboutBox.component";
+import { AboutArray, limelight, roboto } from "./ThirdSection.data";
+
+export default function ThirdSection() {
+	return (
+		<section className="flex flex-col w-full h-full bg-custom-light-grayish-blue2 py-9 px-4">
+			<div className="grid gap-2">
+				<p className="text-5xl text-center uppercase text-custom-dark-desaturated-blue">{" "}FIND YOUR PERFECT MATCH WITH {" "}<strong className={`${limelight.className}`}>COVO</strong>{" "}</p>
+				<p className="text-1xl font-[600] text-custom-dark-desaturated-blue text-center">Connect With Top Brands & Unlock Exciting Opportunities.</p>
+			</div>
+			<br />
+			<div className="flex flex-wrap gap-2 justify-center items-center">
+				{AboutArray.map((about) => {
+					return (
+						<AboutBox
+							key={about.id}
+							imageURL={about.imageURL}
+							title={about.title}
+							text={about.text}
+							className={`bg-white w-[400px] h-[400px] rounded-lg border-custom-light-grayish-blue border-2 flex flex-col justify-center items-center p-4
+                          bg-[url("/svg/BG.svg")]
+                          ${roboto.className} px-[1.5em] py-[1em]`}
+						/>
+					);
+				})}
+			</div>
+		</section>
+	);
+}
+
+// File: components/unauthorized/landing-page/third-section/ThirdSection.data.ts
+import { Roboto } from "next/font/google";
+import { Limelight } from "next/font/google";
+import growth_analytics from "@/assets/svg/growth_analytics.svg"
+import job_hunt from "@/assets/svg/job_hunt.svg"
+import team_collaboration from "@/assets/svg/team_collaboration.svg"
+import transfer_money from "@/assets/svg/transfer_money.svg"
+
+export const limelight = Limelight({
+	subsets: ["latin"],
+	weight: ["400"],
+	style: ["normal"],
+	display: "swap",
+});
+
+export const roboto = Roboto({
+	subsets: ["latin"],
+	weight: ["400", "700"],
+	style: ["normal", "italic"],
+	display: "swap",
+});
+
+export const AboutArray = [
+	{
+		title: "DISCOVER OPPORTUNITIES",
+		text: "Find tailored campaigns that align with your niche and audience.",
+		bgColor: "bg-blue-400 ",
+		imageURL: job_hunt,
+		id: 1,
+	},
+	{
+		title: "EFFICIENT COLLABORATION",
+		text: "Streamlined communication and project management tools.",
+		bgColor: "bg-blue-300 ",
+		imageURL: team_collaboration,
+		id: 2,
+	},
+	{
+		title: "FAIR COMPENSATION",
+		text: "Transparent payment terms and competitive rates.",
+		bgColor: "bg-blue-200 ",
+		imageURL: transfer_money,
+		id: 3,
+	},
+	{
+		title: "GROW YOUR BRAND",
+		text: "Gain exposure, build your following , and establish yourself as an industry leader.",
+		bgColor: "bg-blue-100 ",
+		imageURL: growth_analytics,
+		id: 4,
+	},
+];
+
+// File: components/unauthorized/landing-page/third-section/about-box/AboutBox.component.tsx
+import { IAboutBoxProps } from "./AboutBox.model";
+
+export default function AboutBox(props: IAboutBoxProps) {
+	return (
+		<article className={props.className}>
+			<h1 className="text-3xl font-bold text-center basis-1/2">
+				{props.title}
+			</h1>
+			<p className="basis-1/2 px-[1em]">{props.text}</p>
+		</article>
+	);
+}
+
+// File: components/unauthorized/landing-page/third-section/about-box/AboutBox.model.ts
+export interface IAboutBoxProps {
+	title: string;
+	text: string;
+	className: string;
+}
+
+// File: components/unauthorized/navbar/navbar-button.tsx
+import { LucideIcon } from 'lucide-react';
+import { Button, ButtonProps } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { SheetClose } from '@/components/ui/sheet';
+
+interface NavbarButtonProps extends ButtonProps {
+  icon?: LucideIcon;
+}
+
+export function NavbarButton({
+  icon: Icon,
+  className,
+  children,
+  ...props
+}: NavbarButtonProps) {
+  return (
+    <Button
+      variant='ghost'
+      className={cn('gap-4 text-lg justify-start text-custom-dark-gray hover:text-custom-light-apricot', className)}
+      {...props}
+    >
+      {Icon && <Icon size={20} />}
+      <span>{children}</span>
+    </Button>
+  );
+}
+
+export function NavbarButtonSheet(props: NavbarButtonProps) {
+  return (
+    <SheetClose asChild>
+      <NavbarButton {...props} />
+    </SheetClose>
+  );
+}
+// File: components/unauthorized/navbar/navbar.tsx
+"use client";
+import { Info, Search, Home, List, Hotel } from "lucide-react";
+import { NavbarDes } from "./navbarDes";
+import { NavbarItems } from "@/types";
+import { NavbarMob } from "./navbarMob";
+
+const navbarItems: NavbarItems = {
+	links: [
+		{ label: "Home", href: "/" },
+		{ label: "About", href: "/" },
+		{ label: "Benefits", href: "/" },
+		{ label: "Features", href: "/" },
+		{ label: "FAQ", href: "/" },
+		{ label: "Pricing", href: "/" },
+		{ label: "Contact", href: "/" },
+	],
+};
+
+const navbarItemsMobile: NavbarItems = {
+	links: [
+		{ href: "/", icon: Home },
+		{ href: "/", icon: Search },
+		{ href: "/", icon: Hotel },
+		{ href: "/", icon: Hotel },
+		{ href: "/", icon: Info },
+		{ href: "/", icon: List },
+	],
+};
+
+export function Navbar() {
+	return (
+		<div className="h-[100px]">
+			<NavbarDes navbarItems={navbarItems} />
+			<NavbarMob navbarItems={navbarItemsMobile} />
+		</div>
+	);
+
+
+}
+
+// File: components/unauthorized/navbar/navbarDes.tsx
+import { NavbarButton } from "./navbar-button";
+import { NavbarItems } from "@/types";
+import Link from "next/link";
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { LogOut, UserCog, UserRoundPlus } from "lucide-react";
+import { usePathname } from "next/navigation";
+import React from "react";
+
+interface NavbarProps {
+	navbarItems: NavbarItems;
+}
+
+export function NavbarDes(props: NavbarProps) {
+	const pathname = usePathname();
+
+	return (
+		/* navbar */
+		<aside className="w-full fixed z-50 bg-custom-light-grayish-blue2/70 hidden lg:block">
+			<div className="h-[100px] flex justify-between items-center mx-[70px]">
+				{/* logo */}
+				<Image
+					src="/images/COVO_LOGOGRAM_BLACK.png"
+					alt="logo"
+					className=" opacity-[0.8]"
+					width={200}
+					height={100}
+					priority
+				/>
+
+				{/* links of the pages */}
+				<div className="flex flex-row gap-1 ">
+					{props.navbarItems.links.map((link, index) => (
+						<Link key={index} href={link.href}>
+							<NavbarButton
+								variant={"none"}
+								className={`w-full ${
+									pathname === link.href ? "text-custom-dark-gray" : ""
+								}`}
+								icon={link.icon}
+							>
+								{link.label}
+							</NavbarButton>
+						</Link>
+					))}
+				</div>
+
+				{/* user profile */}
+				<div className=" px-3 bg-custom-dark">
+					<Popover>
+						<PopoverTrigger asChild>
+							<Button
+								variant="none"
+								className="h-auto w-auto flex justify-center items-center scale-[2]"
+							>
+								<UserCog size={80} />
+							</Button>
+						</PopoverTrigger>
+
+						<PopoverContent className="mb-2 w-56 p-3 rounded-sm mr-[80px] ">
+							<div className="space-y-1 text-black">
+								<Link href="/login">
+									<NavbarButton
+										size="sm"
+										className="group w-full hover:bg-custom-dark-gray"
+									>
+										<div className="flex justify-between ">
+											<LogOut
+												className="group-hover:text-custom-light-apricot text-black mt-[5px]"
+												size={20}
+											/>
+											<p
+												className={`text-black group-hover:text-custom-light-apricot pl-2`}
+											>
+												Log In
+											</p>
+										</div>
+									</NavbarButton>
+								</Link>
+								<Link href="/signup">
+									<NavbarButton
+										size="sm"
+										className="group w-full hover:bg-custom-dark-gray"
+									>
+										<div className="flex justify-between ">
+											<UserRoundPlus
+												className="group-hover:text-custom-light-apricot text-black mt-[5px]"
+												size={20}
+											/>
+											<p
+												className={`text-black group-hover:text-custom-light-apricot pl-2`}
+											>
+												Sign Up
+											</p>
+										</div>
+									</NavbarButton>
+								</Link>
+							</div>
+						</PopoverContent>
+					</Popover>
+				</div>
+			</div>
+		</aside>
+	);
+}
+
+// File: components/unauthorized/navbar/navbarMob.tsx
+"use client";
+
+import { NavbarItems } from "@/types";
+import { Sheet } from "@/components/ui/sheet";
+import Link from "next/link";
+import { NavbarButtonSheet as NavbarButton } from "./navbar-button";
+import { usePathname } from "next/navigation";
+import { Separator } from "@/components/ui/separator";
+
+interface NavbarMobileProps {
+	navbarItems: NavbarItems;
+}
+
+export function NavbarMob(props: NavbarMobileProps) {
+	const pathname = usePathname();
+
+	return (
+		<Sheet>
+			<div className="fixed -bottom-[18px] bg-custom-dark-gray w-full h-[100px] z-50 lg:hidden">
+				<Separator />
+
+				<div className="flex justify-between items-center py-2 px-1 mx-5">
+					{props.navbarItems.links.map((link, idx) => (
+						<Link key={idx} href={link.href}>
+							<NavbarButton
+								variant={pathname === link.href ? "secondary" : "ghost"}
+								icon={link.icon}
+								className={`${
+									pathname === link.href
+										? "text-custom-dark-gray bg-custom-light-apricot"
+										: ""
+								} h-[50px] hover:bg-custom-light-apricot hover:text-custom-dark-gray flex flex-col rounded-[100%] justify-center items-center gap-0`}
+							></NavbarButton>
+						</Link>
+					))}
+				</div>
+			</div>
+		</Sheet>
+	);
+}
+
+// File: app/(authorized)/test.txt
+test
+// File: app/(unauthorized)/landingpage/page.tsx
+import LandingPagePage from '@/components/unauthorized/landing-page/LandingPage.page';
+export default function LandingPage() {
+
+  return (
+    <LandingPagePage />
+  );
+
+}
 // File: app/globals.css
 @tailwind base;
 @tailwind components;
@@ -609,7 +1809,10 @@ body {
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Navbar } from "@/components/(unauthorized)/navbar/navbar";
+import { Navbar } from "@/components/unauthorized/navbar/navbar";
+import {Roboto} from "next/font/google";
+
+const roboto = Roboto({weight: ["100", "300", "400", "500", "700", "900"], subsets: ["latin"]});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -635,22 +1838,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased ${roboto.className}`}
       >
         <Navbar />
         {children}
+        
       </body>
     </html>
   );
 }
 
 // File: app/page.tsx
+import LandingPagePage from "@/components/unauthorized/landing-page/LandingPage.page";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Home</h1>
-    </main>
+    <LandingPagePage />
   );
 }
 
