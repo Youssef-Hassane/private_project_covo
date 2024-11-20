@@ -1,7 +1,7 @@
-import AboutBox from "../about-box/AboutBox.component";
-import { AboutArray, limelight, roboto } from "./ThirdSection.data";
+import AboutBox from "./about-box/AboutBox.component";
+import { AboutArray, limelight, roboto } from "./About.data";
 
-export default function ThirdSection() {
+export default function About() {
 	return (
 		<section className="flex flex-col w-full h-full bg-custom-light-grayish-blue2 py-9 px-4">
 			<div className="grid gap-2">

@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function SecondSection() {
+export default function LogoSlider() {
 	const imageURLs = [
 		{ url: "/images/pngwing_pepsi.png", id: 1 },
 		{ url: "/images/pngwingAdidas.png", id: 2 },

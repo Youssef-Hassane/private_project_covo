@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ReactTyped } from "react-typed";
 import Rectangle from "@/assets/images/Rectangle.png";
 
-export default function FirstSection() {
+export default function Hero() {
 	return (
 		<div className='bg-[url("/svg/BG.svg")] bg-no-repeat bg-cover w-full md:h-[700px] flex flex-wrap pb-9'>
 			{/* Text Section */}
