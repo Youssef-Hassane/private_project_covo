@@ -1,5 +1,5 @@
 import AboutBox from "./about-box/AboutBox.component";
-import { AboutArray, limelight, roboto } from "./About.data";
+import { AboutArray, limelight, roboto } from "./about.data";
 
 export default function About() {
 	return (
