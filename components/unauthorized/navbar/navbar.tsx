@@ -6,14 +6,15 @@ import { NavbarMob } from "./navbarMob";
 
 const navbarItems: NavbarItems = {
   links: [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Benefits", href: "#benefits" },
-    { label: "Features", href: "#features" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Pricing", href: "#pricing" },
+    { label: "Home", href: "/#home" },
+    { label: "About", href: "/#about" },
+    { label: "Benefits", href: "/#benefits" },
+    { label: "Features", href: "/#features" },
+    { label: "FAQ", href: "/#faq" },
+    { label: "Pricing", href: "/#pricing" },
     { label: "Contact", href: "#contact" },
   ],
+
 };
 
 const navbarItemsMobile: NavbarItems = {
