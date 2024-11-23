@@ -5,6 +5,7 @@ import Benefits from "./benefits/Benefits.component";
 import Price from "./price/Price.component";
 import Features from "./features/features.component";
 import Faq from "./faq/faq.component";
+import Footer from "../footer/Footer.page";
 
 export default function LandingPagePage() {
 	return (
@@ -29,6 +30,10 @@ export default function LandingPagePage() {
 				<section id="pricing">
 					<Price />
 				</section>
+				<section id="">
+					<Footer />
+				</section>
+				
 			</div>
 		</div>
 	);
