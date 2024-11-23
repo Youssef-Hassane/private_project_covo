@@ -10,7 +10,7 @@ import Footer from "../footer/Footer.page";
 export default function LandingPagePage() {
 	return (
 		<div>
-			<div>
+			<div className="bg-custom-light-grayish-blue2">
 				<section id="home">
 					<Hero />
 				</section>
@@ -30,6 +30,7 @@ export default function LandingPagePage() {
 				<section id="pricing">
 					<Price />
 				</section>
+				<br />
 				<section id="">
 					<Footer />
 				</section>

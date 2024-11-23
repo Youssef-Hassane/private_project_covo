@@ -44,7 +44,7 @@ export default function Contact(props) {
       <br/>
       <h3 className="text-xl font-semibold" >Contact Us</h3>
       {/* <div className='flex flex-row justify-between my-[2em] md:pr-[25%] lg:pr-[25%]'> */}
-      <div className='flex flex-row justify-around my-[2em] md:pr-[25%] lg:pr-[25%]'>
+      <div className='flex flex-row justify-around my-[2em] lg:pr-[25%]'>
         {
           logoArray.map(logo => {
             return (
