@@ -1,7 +1,8 @@
 import Image from "next/image";
-import Contact from "./contact/Contact.component";
-import Legal from "./Legal.component";
-import Join from "./Join.component";
+import ContactLegal from "./contact-legal/ContactLegal.component";
+import Contact from "./contact-legal/contact/Contact.component";
+import Legal from "./contact-legal/legal/Legal.component";
+import Join from "./join/Join.component";
 import COVO_WHITE_NO_BG_2 from "@/assets/images/COVO_WHITE_NO_BG_2.png"
 
 
@@ -16,14 +17,10 @@ export default function Footer() {
           <Image className="opacity-50" src={COVO_WHITE_NO_BG_2} alt="COVO_WHITE_NO_BG" />
         </section>
 
-        <section className=" lg:basis-1/3 flex flex-col justify-center  px-[1em]  ">
-          <Legal />
-          <Contact />
-        </section>
+        <ContactLegal className="lg:basis-1/3 flex flex-col justify-center px-[1em] " />
         <br />
-        <section className=" basis-1/3 flex flex-col justify-center  px-[1em] ">
-          <Join />
-        </section>
+        <Join className="basis-1/3 flex flex-col justify-center px-[1em]" />
+
       </div>
 
     </footer>
