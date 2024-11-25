@@ -1,3 +1,3 @@
-export default interface ILegalElements {
+export default interface ILegalElementsProps {
   className: string;
 }

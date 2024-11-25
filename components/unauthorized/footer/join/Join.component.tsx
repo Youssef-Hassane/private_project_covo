@@ -1,9 +1,9 @@
 import { inputBoxArray } from './Join.data'
 import InputButton from './input-button/InputButton.component'
 import SubscribeComponent from './input-button/Subscribe.component'
+import IJoinProps from './Join.model'
 
-export default function Join(props) {
-
+export default function Join(props: IJoinProps) {
   return (
     <section className={props.className}>
       <h3 className={"text-xl font-semibold"} >Join Our Newsletter</h3>

@@ -1,6 +1,6 @@
-import IInputButton from '../InputButton.model';
+import IInputButtonProps from './InputButton.model';
 
-export default function InputButtonImportant(props: IInputButton) {
+export default function InputButtonImportant(props: IInputButtonProps) {
   return (
     <>
       <label htmlFor={props.id} className="my-[1em]" >{ props.label }<em className="text-red-500">*</em></label>
