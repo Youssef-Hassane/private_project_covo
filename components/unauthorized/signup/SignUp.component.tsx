@@ -33,7 +33,7 @@ export default function SignUp() {
     const [loggedInSuccessfully, setLoggedInSuccessfully] = useState('');
 
 
-    
+
     const contexts = [
         [Context_email, { email, setEmail }],
         [Context_password, { password, setPassword }],
@@ -46,7 +46,6 @@ export default function SignUp() {
 
     return (
         <AllContextsProvider contexts={contexts}>
-            <Navbar />
             <main className="h-[calc(100dvh-100px)] flex items-center justify-center p-6 relative overflow-hidden bg-custom-very-soft-blue bg-[url('/svg/BG.svg')] bg-no-repeat bg-cover">
                 <div className='bg-custom-light-grayish-blue bg-[url("/svg/BG.svg")] p-10 rounded-lg shadow-md z-50 flex flex-col items-center justify-center h-[37em] md:h-[25em] md:flex-row md:w-auto w-[97%] '>
                     <SignUpBoxImage />
