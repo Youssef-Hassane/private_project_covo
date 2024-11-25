@@ -5,13 +5,10 @@ import Benefits from "./benefits/Benefits.component";
 import Price from "./price/Price.component";
 import Features from "./features/features.component";
 import Faq from "./faq/faq.component";
-import Footer from "../footer/Footer.page";
-import { Navbar } from "../navbar/navbar";
 
 export default function LandingPagePage() {
 	return (
 		<div>
-			<Navbar />
 			<div className="bg-custom-light-grayish-blue2">
 				<section id="home">
 					<Hero />
@@ -33,10 +30,6 @@ export default function LandingPagePage() {
 					<Price />
 				</section>
 				<br />
-				<section id="">
-					<Footer />
-				</section>
-				
 			</div>
 		</div>
 	);
