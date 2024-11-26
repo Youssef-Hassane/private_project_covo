@@ -5,7 +5,6 @@ import SignUpBoxImage from './signup-box-image/SignUpBoxImage';
 import SignUpBox from './signup-box/SignUpBox';
 import AllContextsProvider from '@/components/shared/AllContextsProvider';
 import { IUser } from '@/components/unauthorized/signup/SignUp.model';
-import { Navbar } from '../navbar/navbar';
 
 
 /* sign up page */
