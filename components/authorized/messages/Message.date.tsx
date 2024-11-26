@@ -5,7 +5,7 @@ export const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  mails: [
+  chats: [
     {
       name: "William Smith",
       email: "williamsmith@example.com",
@@ -86,6 +86,9 @@ export const data = {
       teaser:
         "To celebrate our recent project success, I'd like to organize a team dinner.\nAre you available next Friday evening? Please let me know your preferences.",
     },
+
   ],
+  
+
 }
  

@@ -40,7 +40,7 @@ export const data = {
         },
         {
           title: "Recent Messages",
-          url: "#",
+          url: "/messages",
         },
         {
           title: "Upcoming Tasks",

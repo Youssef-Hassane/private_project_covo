@@ -4,14 +4,14 @@ import { data } from "@/components/authorized/side-bar/app-sidebar/app-sidebar.d
 import { NavMain } from "@/components/authorized/side-bar/nav/nav-main"
 import { NavProjects } from "@/components/authorized/side-bar/nav/nav-projects"
 import { NavUser } from "@/components/authorized/side-bar/nav/nav-user"
-import { TeamSwitcher } from "@/components/authorized/side-bar/team-switcher/team-switcher"
+import { CovoLogo } from "@/components/authorized/side-bar/covo-logo/CovoLogo"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <CovoLogo />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
