@@ -1,11 +1,10 @@
 import { AudioWaveform, SwatchBook, User, Command, Frame, GalleryVerticalEnd, Map, PieChart, Search, House } from "lucide-react"
-import AshrafAtef from "@/assets/images/Ashraf-Atef.jpeg";
 
 export const data = {
   user: {
-    name: "Ashraf Atef",
-    email: "info@AshrafAtef.com",
-    avatar: AshrafAtef,
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
   },
   teams: [
     {

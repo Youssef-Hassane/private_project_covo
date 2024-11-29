@@ -1,6 +1,6 @@
+"use server"
 import { cookies } from "next/headers";
 import { ChatLayout } from "@/components/authorized/messages/chat/chat/chat-layout";
-import MessagesComponent from "@/components/authorized/messages/Message.components";
 
 export default function ChatArea() {
   const layout = cookies().get("react-resizable-panels:layout");
@@ -8,7 +8,7 @@ export default function ChatArea() {
 
   return (
     <div className="w-full">
-      <MessagesComponent defaultLayout={defaultLayout} navCollapsedSize={8} />
+      <ChatLayout defaultLayout={defaultLayout} navCollapsedSize={8} />
     </div>
   );
 }
