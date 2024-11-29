@@ -19,12 +19,13 @@ const navbarItems: NavbarItems = {
 
 const navbarItemsMobile: NavbarItems = {
 	links: [
-		{ href: "/", icon: Home },
-		{ href: "/", icon: Search },
-		{ href: "/", icon: Hotel },
-		{ href: "/", icon: Hotel },
-		{ href: "/", icon: Info },
-		{ href: "/", icon: List },
+    { label: "Home", href: "/#home" },
+    { label: "About", href: "/#about" },
+    { label: "Benefits", href: "/#benefits" },
+    { label: "Features", href: "/#features" },
+    { label: "FAQ", href: "/#faq" },
+    { label: "Pricing", href: "/#pricing" },
+    { label: "Contact", href: "#contact" },
 	],
 };
 

@@ -8,27 +8,11 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Send } from 'lucide-react';
-import ChatArea from "./chat/chat.component"
-import { Chat } from "./chat/chat/chat"
-import { userData } from "@/app/data";
-import { useState } from "react"
 
-interface ChatLayoutProps {
-  defaultLayout: number[] | undefined;
-  defaultCollapsed?: boolean;
-  navCollapsedSize: number;
-}
 
-export default function MessagesComponent({
-  defaultLayout = [320, 480],
-  defaultCollapsed = false,
-  navCollapsedSize,
-}: ChatLayoutProps) {
+
+export default function MessagesComponent() {
   const [chats, setChats] = React.useState(data.chats)
-  const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
-  const [selectedUser, setSelectedUser] = React.useState(userData[0]);
-  const [isMobile, setIsMobile] = useState(false);
-
 
   return (
     <div className="md:flex " >
@@ -74,13 +58,9 @@ export default function MessagesComponent({
           </ScrollArea>
         </div>
       </Sidebar>
-      <div className=" w-full h-[calc(100vh-64px)] ">
+      <div className=" w-full h-[calc(100vh-64px)] bg-red-300">
         <ScrollArea className="h-[calc(100vh-129px)]">
-        <Chat
-          messages={selectedUser.messages}
-          selectedUser={selectedUser}
-          isMobile={isMobile}
-        />
+          
         </ScrollArea>
         <div className="flex w-full h-[65px] items-end space-x-2 p-3 border-t-2 border-sidebar-border bg-sidebar">
           <Input className="h-full" type="Message" placeholder="Message" />
