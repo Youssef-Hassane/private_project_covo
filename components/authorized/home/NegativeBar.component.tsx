@@ -29,7 +29,7 @@ export default function NegativeBar({monthlyIncome, averageMonthlyIncome, classN
   // Memoized Average
   const averageMonthDeviation = React.useMemo(() =>
     monthlyIncome.map(({month, total}) => {
-      return {month: month.split(' ')[0], delta: (averageMonthlyIncome - total)}
+      return {month: month.split(' ')[0].slice(0,3), delta: (averageMonthlyIncome - total)}
     }),
     []
   )

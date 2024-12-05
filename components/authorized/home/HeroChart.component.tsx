@@ -126,7 +126,7 @@ export default function Barchart({chartData}) {
   )
 
   return (
-    <Card className="w-full border-2 border-blue-500 ">
+    <Card className="w-full border-2  ">
       {/* Desktop and larger screens header */}
       <CardHeader className="sm:flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-row justify-between gap-1 px-6 py-1 sm:py-6">

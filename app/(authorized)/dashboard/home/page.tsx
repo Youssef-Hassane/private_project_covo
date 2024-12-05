@@ -72,13 +72,13 @@ const {monthlyIncome, averageMonthlyIncome} = calculateMonthlyIncome(chartData);
 export default function Page() {
   return (
     <div className={`w-full flex flex-col justify-center ${inter.className} `}>
-      <div className="flex justify-center border-2" >
+      <div className="flex justify-center " >
         <HeaderStats />
       </div>
 
-      <div className="px-[2em] lg:px-[3em] xl:px-[12em] border-2 flex flex-col gap-3" >
+      <div className="px-[2em] lg:px-[3em] xl:px-[12em] flex flex-col gap-3" >
         <Barchart chartData={chartData} />
-        <div className="flex flex-row gap-2 " >
+        <div className="flex flex-col-reverse md:flex-row lg:flex-row gap-2 " >
           <PieChartDivided className={`basis-1/3`} />
           <NegativeBar monthlyIncome={monthlyIncome} averageMonthlyIncome={averageMonthlyIncome} className={`basis-2/3`} />
         </div>
