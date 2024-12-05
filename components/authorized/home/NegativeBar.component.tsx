@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { TrendingUp, TrendingDown } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, Cell, LabelList } from "recharts"
+import { Bar, BarChart, ResponsiveContainer, CartesianGrid, Cell, LabelList } from "recharts"
 
 import {
   Card,
@@ -25,7 +25,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export default function NegativeBarComponent({monthlyIncome, averageMonthlyIncome}) {
+export default function NegativeBar({monthlyIncome, averageMonthlyIncome, className}) {
   // Memoized Average
   const averageMonthDeviation = React.useMemo(() =>
     monthlyIncome.map(({month, total}) => {
@@ -37,35 +37,39 @@ export default function NegativeBarComponent({monthlyIncome, averageMonthlyIncom
   console.log(averageMonthDeviation);
 
   return (
-    <Card>
+    <Card className={className} >
       <CardHeader>
         <CardTitle>Bar Chart - Trend</CardTitle>
         <CardDescription>2024</CardDescription>
       </CardHeader>
+
       <CardContent>
-        <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={averageMonthDeviation}>
-            <CartesianGrid vertical={false} />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel hideIndicator />}
-            />
-            <Bar dataKey="delta">
-              <LabelList position="top" dataKey="month" fillOpacity={1} />
-              {averageMonthDeviation.map((item) => (
-                <Cell
-                  key={item.month}
-                  fill={
-                    item.delta > 0
-                      ? "var(--chart-1)"
-                      : "var(--chart-2)"
-                  }
-                />
-              ))}
-            </Bar>
-          </BarChart>
-        </ChartContainer>
+        <ResponsiveContainer width="100%" height={150}>
+          <ChartContainer config={chartConfig}>
+            <BarChart accessibilityLayer data={averageMonthDeviation}>
+              <CartesianGrid vertical={false} />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel hideIndicator />}
+              />
+              <Bar dataKey="delta">
+                <LabelList position="top" dataKey="month" fillOpacity={1} />
+                {averageMonthDeviation.map((item) => (
+                  <Cell
+                    key={item.month}
+                    fill={
+                      item.delta > 0
+                        ? "var(--chart-1)"
+                        : "var(--chart-2)"
+                    }
+                  />
+                ))}
+              </Bar>
+            </BarChart>
+          </ChartContainer>
+        </ResponsiveContainer>
       </CardContent>
+
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
 

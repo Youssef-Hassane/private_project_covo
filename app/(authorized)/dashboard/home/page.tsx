@@ -2,7 +2,8 @@ import Campaigns from "@/components/authorized/home/Campaigns.component";
 import Messages from "@/components/authorized/home/Messages.component";
 import HeaderStats from "@/components/authorized/home/HeaderStats.component";
 import Barchart from "@/components/authorized/home/HeroChart.component";
-import NegativeBarComponent from "@/components/authorized/home/SubHeroChart.component";
+import NegativeBar from "@/components/authorized/home/NegativeBar.component";
+import PieChartDivided from "@/components/authorized/home/PieChartDivided.component";
 import { Inter } from "next/font/google";
 
 
@@ -75,10 +76,13 @@ export default function Page() {
         <HeaderStats />
       </div>
 
-      <div className="px-[2em] lg:px-[4em] xl:px-[12em] border-2 " >
+      <div className="px-[2em] lg:px-[3em] xl:px-[12em] border-2 flex flex-col gap-3" >
         <Barchart chartData={chartData} />
+        <div className="flex flex-row gap-2 " >
+          <PieChartDivided className={`basis-1/3`} />
+          <NegativeBar monthlyIncome={monthlyIncome} averageMonthlyIncome={averageMonthlyIncome} className={`basis-2/3`} />
+        </div>
       </div>
-      <NegativeBarComponent monthlyIncome={monthlyIncome} averageMonthlyIncome={averageMonthlyIncome} />
 
       <div className="px-[2em] lg:px-[4em] xl:px-[12em] min-h-screen grid grid-cols-1 gap-y-8 md:grid-cols-2 lg:grid-cols-2 md:gap-3 lg:gap-6 content-center w-full border-2 border-red-200 justify-center ">
         <Campaigns />
