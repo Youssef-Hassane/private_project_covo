@@ -39,7 +39,8 @@ import {
 const chartConfig = {
   income: {
     label: "Total Income",
-    color: "var(--chart-2)",
+    // color: "#3e4756",
+    color: "#765566",
   },
 } satisfies ChartConfig
 
@@ -126,7 +127,7 @@ export default function Barchart({chartData}) {
   )
 
   return (
-    <Card className="w-full border-2  ">
+    <Card className="w-full border-2 bg-[hsl(var(--sidebar-border))] ">
       {/* Desktop and larger screens header */}
       <CardHeader className="sm:flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-row justify-between gap-1 px-6 py-1 sm:py-6">

@@ -59,9 +59,14 @@ export default function NegativeBar({monthlyIncome, averageMonthlyIncome, classN
                     key={item.month}
                     fill={
                       item.delta > 0
-                        ? "var(--chart-1)"
-                        : "var(--chart-2)"
+                        ? "#97accf"
+                        : "#a06d00"
                     }
+                    // fill={
+                    //   item.delta > 0
+                    //     ? "var(--chart-1)"
+                    //     : "var(--chart-2)"
+                    // }
                   />
                 ))}
               </Bar>

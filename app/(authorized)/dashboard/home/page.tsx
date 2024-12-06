@@ -76,11 +76,11 @@ export default function Page() {
         <HeaderStats />
       </div>
 
-      <div className="px-[2em] lg:px-[3em] xl:px-[12em] flex flex-col gap-3" >
+      <div className="px-[2em] lg:px-[3em] xl:px-[12em] flex flex-col gap-3 " >
         <Barchart chartData={chartData} />
         <div className="flex flex-col-reverse md:flex-row lg:flex-row gap-2 " >
-          <PieChartDivided className={`basis-1/3`} />
-          <NegativeBar monthlyIncome={monthlyIncome} averageMonthlyIncome={averageMonthlyIncome} className={`basis-2/3`} />
+          <PieChartDivided className={`basis-1/3 bg-[hsl(var(--sidebar-border))]`} />
+          <NegativeBar monthlyIncome={monthlyIncome} averageMonthlyIncome={averageMonthlyIncome} className={`basis-2/3 bg-[hsl(var(--sidebar-border))]`} />
         </div>
       </div>
 
