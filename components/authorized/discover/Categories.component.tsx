@@ -53,7 +53,7 @@ export default function Categories() {
     },
     {
       name: "Health and Wellness",
-      icon: <Cross className=" p-[12px] bg-[#EDCBD3] rounded-full " />,
+      icon: <Cross />,
       color: "#EDCBD3",
     },
     {
@@ -69,22 +69,21 @@ export default function Categories() {
   ];
 
   return (
-    <div className="flex items-center pt-[1em] ">
+    <div className="flex items-center pt-[1em] flex-wrap gap-2 ">
       {categoriesArray.map((item) => {
         return (
-          <Card key={item.name}>
-            {/* <CardHeader>
-              <CardTitle>Card Title</CardTitle>
-              <CardDescription>Card Description</CardDescription>
-            </CardHeader> */}
-
-            <CardContent>
-              <p>{item.name}</p>
-              <p className={``}>{item.icon}</p>
+          <Card key={item.name} className="flex flex-row p-2 " >
+            <CardHeader
+            className= "flex flex-col justify-center p-4 items-center h-[10] w-[10] rounded-full "
+            style={{ backgroundColor: item.color }} >
+              <CardDescription className="text-white">{item.icon}</CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col justify-center py-[0.5em] px-[1em] ">
+              <CardTitle className="">{item.name}</CardTitle>
+              <CardDescription className="">
+                Something
+              </CardDescription>
             </CardContent>
-            <CardFooter>
-              <p>Card Footer</p>
-            </CardFooter>
           </Card>
         );
       })}
