@@ -9,6 +9,7 @@ import {
   Pizza,
   Cross,
   PaintRoller,
+  Rows3,
 } from "lucide-react";
 import {
   Card,
@@ -63,7 +64,7 @@ export default function Categories() {
     },
     {
       name: "All categories",
-      icon: null,
+      icon: <Rows3 />,
       color: "#9CA6B9",
     },
   ];
@@ -76,7 +77,7 @@ export default function Categories() {
             <CardHeader
             className= "flex flex-col justify-center p-4 items-center h-[10] w-[10] rounded-full "
             style={{ backgroundColor: item.color }} >
-              <CardDescription className="text-white">{item.icon}</CardDescription>
+              <CardDescription className="text-white" >{item.icon}</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col justify-center py-[0.5em] px-[1em] ">
               <CardTitle className="">{item.name}</CardTitle>
