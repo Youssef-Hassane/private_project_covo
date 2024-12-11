@@ -114,7 +114,7 @@ export default function Categories() {
             <button key={item.name} onClick={(event) => handleClickEvent(item, event)}>
               <Card
                 className={`flex flex-row p-2 items-center ${
-                  isSelected ? "bg-blue-200 border-blue-500" : "bg-[hsl(var(--sidebar-border))]"
+                  isSelected ? "bg-blue-200 border-blue-500" : "bg-[hsl(var(--sidebar-border))] "
                 } duration-300`}
               >
                 <CardHeader
