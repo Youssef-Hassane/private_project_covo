@@ -111,15 +111,16 @@
 
 "use client";
 
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Brand,
-  categories,
-  brandArray,
-  columns,
-} from "./ColumnDef"
+import { Brand, categories, brandArray, columns } from "./ColumnDef";
 import {
   ColumnDef,
   flexRender,
@@ -149,7 +150,7 @@ export default function CardTable<TData, TValue>({
       {/* Sorting Header */}
       <div className="flex bg-[hsl(var(--sidebar-border))] sticky top-16 z-10 ">
         <div className="flex flex-row justify-between items-center space-x-2 ">
-          {table.getHeaderGroups().map((headerGroup) => (
+          {table.getHeaderGroups().map((headerGroup) =>
             headerGroup.headers.map((header) => (
               <Button
                 key={header.id}
@@ -157,10 +158,13 @@ export default function CardTable<TData, TValue>({
                 onClick={header.column.getToggleSortingHandler()}
                 className="text-sm bg-transparent border-3 border-blue-400 "
               >
-                {flexRender(header.column.columnDef.header, header.getContext())}
+                {flexRender(
+                  header.column.columnDef.header,
+                  header.getContext()
+                )}
               </Button>
             ))
-          ))}
+          )}
         </div>
         {/* <Input
           placeholder="Search..."
@@ -174,8 +178,11 @@ export default function CardTable<TData, TValue>({
       {/* Results as Cards */}
       <div className="grid grid-cols-1  gap-4">
         {table.getRowModel().rows.map((row) => (
-          <Card key={row.id} className="border shadow-sm hover:shadow-md w-[67vw]">
-            <CardContent className="flex flex-row ">
+          <Card
+            key={row.id}
+            className="border shadow-sm hover:shadow-md w-[67vw]"
+          >
+            <CardContent className="flex flex-row items-center ">
               {/* <CardTitle>
                 {row.getVisibleCells().map((cell) => (
                   <div key={cell.id}>
@@ -188,9 +195,7 @@ export default function CardTable<TData, TValue>({
 
               {row.getVisibleCells().map((cell) => (
                 <div key={cell.id}>
-                  {
-                    flexRender(cell.column.columnDef.cell, cell.getContext())
-                  }
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </div>
               ))}
             </CardContent>
