@@ -88,13 +88,15 @@ const columns: ColumnDef<Brand>[] = [
     id: "image",
     header: "Icon",
     cell: (props) => (
-      <Image
-        src={COVO_LOGOGRAM_BLACK_2}
-        width={100}
-        height={100}
-        alt={props.getValue()}
-        className="rounded-[30%] bg-center border-red-500 border-4"
-      />
+      <div className="border-2 ">
+        <Image
+          src={COVO_LOGOGRAM_BLACK_2}
+          width={100}
+          height={100}
+          alt={props.getValue()}
+          className="rounded-[30%] bg-center border-red-500 border-4"
+        />
+      </div>
     ),
   }),
 
@@ -102,7 +104,7 @@ const columns: ColumnDef<Brand>[] = [
     id: "description",
     header: "Description",
     cell: ({ row }) => (
-      <CardContent className="border-2 border-blue-300 flex flex-row justify-between items-center ">
+      <CardContent className="border-2 border-yellow-300 flex flex-row justify-between items-center self-center p-2 w-[400px] ">
         <CardHeader className="border-2 border-blue-300">
           <CardTitle>{row.original.name}</CardTitle>
           <CardDescription>{row.original.description}</CardDescription>

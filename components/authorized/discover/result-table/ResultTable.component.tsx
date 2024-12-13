@@ -176,13 +176,13 @@ export default function CardTable<TData, TValue>({
       </div>
 
       {/* Results as Cards */}
-      <div className="grid grid-cols-1  gap-4">
+      <div className="grid grid-cols-1 gap-4 border-red-300 border-2 ">
         {table.getRowModel().rows.map((row) => (
           <Card
             key={row.id}
-            className="border shadow-sm hover:shadow-md w-[67vw]"
+            className="border shadow-sm hover:shadow-md w-[67vw] border-green-300"
           >
-            <CardContent className="flex flex-row items-center ">
+            <CardContent className="flex flex-row items-center justify-between py-3 px-[3em] ">
               {/* <CardTitle>
                 {row.getVisibleCells().map((cell) => (
                   <div key={cell.id}>
